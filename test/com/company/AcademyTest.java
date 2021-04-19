@@ -1,12 +1,13 @@
 package com.company;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class AcademyTest {
 public Academy academy = new Academy();
-    @Test
+@Ignore
+ //   @Test
     void findMaximumElementMatrix() {
         int[][]arr = {
                 {0,3,2,4},
@@ -18,7 +19,8 @@ public Academy academy = new Academy();
         String textCheck = academy.findMaximumElementMatrix(arr);
         assertEquals(i + " " + j,textCheck);
     }
-    @Test
+    @Ignore
+//    @Test
     void findMaximumElementMatrix1() {
         int[][]arr = {
                 {-3,-2},
@@ -29,8 +31,9 @@ public Academy academy = new Academy();
         String textCheck = academy.findMaximumElementMatrix(arr);
         assertEquals(i + " " + j,textCheck);
     }
-
-    @Test
+// перевернуть массив
+    @Ignore
+//    @Test
     void reversArray() {
         int[][]array = {
                 {0,0,9,9},
@@ -41,4 +44,59 @@ public Academy academy = new Academy();
         assertArrayEquals(new int[][]{{9,9,0,0},
                         {4,3,2,1},{8,7,6,5}},array);
     }
+//@Ignore
+//    @Test
+//    void printRow() {
+//        int[][]array = {
+//                {0,1,0,1},
+//                {1,1,0,1},
+//                {1,0,0,1}
+//
+//        };
+//        int check = Academy.printRow(array,2);
+//        assertEquals(3,check);
+//    }
+    //@Ignore
+    @Test
+    void printRow1() {
+        int[][]array = {
+                {0,0,1,1,0,0},
+                {1,1,0,0,1,0},
+                {1,0,0,0,1,1}
+
+        };
+        int check = Academy.printRow(array,2);
+        assertEquals(1,check);
+    }
+    //@Ignore
+//    @Test
+//    void printRow2() {
+//        int[][]array = {
+//                {1,1,1,1,0},
+//                {0,0,0,0,1},
+//                {1,0,1,1,1},
+//                {0,1,0,0,0},
+//                {1,1,1,0,0},
+//                {1,1,1,1,0},
+//                {1,0,1,0,0},
+//                {0,1,1,0,0},
+//                {0,1,0,0,0},
+//                {1,0,1,0,0},
+//                {1,1,1,1,0},
+//
+//        };
+//        int check = Academy.printRow(array,1);
+//        assertEquals(1,check);
+//    }
+//    @Test
+//    void printRow3() {
+//        int[][]array = {
+//                {0,0,0,1,0,0},
+//                {1,1,0,1,1,0},
+//                {1,0,0,1,1,1}
+//
+//        };
+//        int check = Academy.printRow(array,3);
+//        assertEquals(1,check);
+//    }
 }

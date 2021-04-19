@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Academy {
     String findMaximumElementMatrix(int[][] arr) {
@@ -23,32 +24,69 @@ public class Academy {
     public static void reverse(int[][] array) {
 
         int[][] arr = new int[3][4];
-        for (int i = 0; i < array.length ; i++) {
+        for (int i = 0; i < array.length; i++) {
             int count = 0;
             for (int j = array[i].length - 1; j >= 0; j--) {
                 arr[i][count] = array[i][j];
                 count++;
             }
         }
-        for (int i = 0; i < arr.length ; i++) {
-            for (int j = 0; j < arr[i].length ; j++) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
                 array[i][j] = arr[i][j];
             }
         }
     }
-    public static int printRow(int[][]array,int number){
-        int answer = 0;
+//
+    public static int printRow(int[][] array, int number) {
+        int row = 0;
         for (int i = 0; i < array.length; i++) {
-            int count = 0;
-            for (int j = 0; j < array[i].length; j++) {
-                if (array[i][j] == 0) {
-                     count++;
+            int t = 1;
+            for (int j = 1; j < array[i].length; j++) {
+                if (array[i][j - 1] + array[i][j] == 0) {
+                    t++;
+                } if (t >= number) {
+                    row = i + 1;
+                }
+                else if (array[i][j - 1] < array[i][j]) {
+                    t = 1;
                 }
             }
-            if(count >= number){
-                answer = i + 1;
+            if (row == i + 1) {
+                break;
             }
         }
-        return answer;
+        return row;
+    }
+    public void testMain(){
+        int result = 0;
+        Scanner sc = new Scanner(System.in);
+        int row = sc.nextInt();
+        int column = sc.nextInt();
+        int[][]array = new int[row][column];
+        for (int i = 0; i < array.length ; i++) {
+            for (int j = 0; j < array[i].length ; j++) {
+                array[i][j] = sc.nextInt();
+            }
+        }
+        int number = sc.nextInt();
+        for (int i = 0; i < array.length; i++) {
+            int t = 1;
+            for (int j = 1; j < array[i].length; j++) {
+                if (array[i][j - 1] + array[i][j] == 0) {
+                    t++;
+                }
+                if(t >= number){
+                    result = i + 1;
+                }
+                else if (array[i][j - 1] < array[i][j]) {
+                    t = 1;
+                }
+            }
+            if (result == i + 1) {
+                break;
+            }
+        }
+        System.out.print(result);
     }
 }
