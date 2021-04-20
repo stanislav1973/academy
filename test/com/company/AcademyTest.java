@@ -57,7 +57,7 @@ public Academy academy = new Academy();
 //        assertEquals(3,check);
 //    }
     //@Ignore
-    @Test
+ //   @Test
     void printRow1() {
         int[][]array = {
                 {0,0,1,1,0,0},

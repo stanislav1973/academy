@@ -37,7 +37,7 @@ public class Academy {
             }
         }
     }
-//
+//fix the place
     public static int printRow(int[][] array, int number) {
         int row = 0;
         for (int i = 0; i < array.length; i++) {
@@ -58,6 +58,7 @@ public class Academy {
         }
         return row;
     }
+    //
     public void testMain(){
         int result = 0;
         Scanner sc = new Scanner(System.in);
@@ -89,4 +90,55 @@ public class Academy {
         }
         System.out.print(result);
     }
-}
+    //price ticket
+    public void testMain_1(){
+        Scanner sc = new Scanner(System.in);
+        int result = 0;
+        System.out.println("Enter the number of row:");
+        int row = sc.nextInt();
+        System.out.println("Enter the number of seats in each row:");
+        int seat = sc.nextInt();
+        System.out.println("Cinema:");
+        for (int i = 1; i <= seat; i++) {
+            if(i == 1){
+                System.out.print("  ");
+            }
+            System.out.print(i + " ");
+        }
+        System.out.println();
+        for (int i = 1; i <=row; i++) {
+            System.out.print(i);
+            for (int j = 1; j <=seat; j++) {
+                System.out.print(" S");
+            }
+            System.out.println();
+        }
+        System.out.println("Enter a row number:");
+        int numberRowForPrice = sc.nextInt();
+        System.out.println("Enter a seat number in that row:");
+        int numberSeatForPrice = sc.nextInt();
+        if(row * seat <= 60 || numberRowForPrice <= 4){
+            System.out.print("Ticket price:" + "$" + "10\n");
+        }
+        else System.out.print("Ticket price:" + "$" + "8\n");
+        System.out.println("Cinema:");
+        for (int i = 1; i <= seat; i++) {
+            if(i == 1){
+                System.out.print("  ");
+            }
+            System.out.print(i + " ");
+        }
+        System.out.println();
+        for (int i = 1; i <=row; i++) {
+            System.out.print(i);
+            for (int j = 1; j <=seat; j++) {
+                if(i == numberRowForPrice && j == numberSeatForPrice){
+                    System.out.print(" B");
+                    continue;
+                }
+                System.out.print(" S");
+            }
+            System.out.println();
+        }
+    }
+    }
