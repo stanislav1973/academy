@@ -46,11 +46,16 @@ public class Academy_1 {
                 System.out.print("Unknown operator");
         }
     }
-    public static void subtractTwoNumbers(long a,long b){
-        if(b == 0){
-            System.out.print("Division by 0!");
+
+    public static void sort(int[] array) {// 3 1 0 //1 0 3
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 1; j < array.length; j++)
+                if (array[j - 1] > array[j]) {
+                    int t = array[j];
+                    array[j] = array[j - 1];
+                    array[j - 1] = t;
+                }
         }
-        else System.out.print(a/b);
     }
 }
 
