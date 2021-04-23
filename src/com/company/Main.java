@@ -11,7 +11,8 @@ public class Main {
     }
 
     public static void menuOption_1(int option, String[][] str, int numberRowForPrice, int numberSeatForPrice) {
-            if (option == 1) {
+        int count = 1;
+        if (option == 1) {
                 System.out.println("Cinema:");
                 for (int i = 1; i < str[0].length + 1; i++) {
                     if (i == 1) {
@@ -21,8 +22,14 @@ public class Main {
                 }
                 System.out.println();
                 for (int i = 0; i < str.length; i++) {
-                    System.out.print(i + 1);
+                    System.out.print(count++);
                     for (int j = 0; j < str[i].length; j++) {
+                        if(numberRowForPrice != 0 && numberSeatForPrice != 0 && i == (numberRowForPrice - 1) && j == (numberSeatForPrice - 1)){
+                           String y =  str[i][j].replace(" S"," B");
+                            str[i][j] = y;
+                            System.out.print(y);
+                            continue;
+                        }
                         str[i][j] = " S";
                         System.out.print(str[i][j]);
                     }
@@ -53,15 +60,20 @@ public class Main {
         String[][] str = new String[row][seat];
         mainMenu();
         int option = sc.nextInt();
-        if (option == 1) {
-            menuOption_1(option, str, numberRowForPrice, numberSeatForPrice);
-        }
-        if (option == 2) {
-            System.out.println("Enter a row number:");
-            numberRowForPrice = sc.nextInt();
-            System.out.println("Enter a seat number in that row:");
-            numberSeatForPrice = sc.nextInt();
-            menuOption_1(option, str, numberRowForPrice, numberSeatForPrice);
+        while (option != 0) {
+            if (option == 2) {
+                System.out.println("Enter a row number:");
+                numberRowForPrice = sc.nextInt();
+                System.out.println("Enter a seat number in that row:");
+                numberSeatForPrice = sc.nextInt();
+                //str[numberRowForPrice][numberSeatForPrice] = " B";
+                menuOption_1(option, str, numberRowForPrice, numberSeatForPrice);
+            }
+
+            if (option == 1) {
+                menuOption_1(option, str, numberRowForPrice, numberSeatForPrice);
+            }
+            option = sc.nextInt();
         }
     }
 }
