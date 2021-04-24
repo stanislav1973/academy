@@ -15,7 +15,6 @@ public class Main {
         int row = str.length;
         int seat = str[0].length;
         int count = 1;
-        int countTicket = 0;
         float percentage = 0;
         if (option == 1) {
             System.out.println("Cinema:");
