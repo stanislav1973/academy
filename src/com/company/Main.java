@@ -7,11 +7,16 @@ public class Main {
     public static void mainMenu() {
         System.out.println("1. Show the seats");
         System.out.println("2. Buy a ticket");
+        System.out.println("3. Statistics");
         System.out.println("0. Exit");
     }
 
     public static void menuOption_1(int option, String[][] str, int numberRowForPrice, int numberSeatForPrice) {
+        int row = str.length;
+        int seat = str[0].length;
         int count = 1;
+        int countTicket = 0;
+        float percentage = 0;
         if (option == 1) {
             System.out.println("Cinema:");
             for (int i = 1; i < str[0].length + 1; i++) {
@@ -57,6 +62,18 @@ public class Main {
             System.out.println("2. Buy a ticket");
             System.out.println("0. Exit");
         }
+
+        if(option == 3){
+            String p = "%";
+            System.out.printf("Number of purchased tickets: %d\n",countTicket);
+            System.out.printf("Percentage: %.2f%s\n",percentage,p);
+            String s = String.format("Total income: $%d\n",(row * seat)*10);
+            System.out.print(s);
+        }
+
+    }
+    public static void statistics(){
+
     }
 
     public static void main(String[] args) {
@@ -79,6 +96,9 @@ public class Main {
                 menuOption_1(option, str, numberRowForPrice, numberSeatForPrice);
             }
             if (option == 1) {
+                menuOption_1(option, str, numberRowForPrice, numberSeatForPrice);
+            }
+            if(option == 3){
                 menuOption_1(option, str, numberRowForPrice, numberSeatForPrice);
             }
             option = sc.nextInt();
