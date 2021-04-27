@@ -58,11 +58,11 @@ public class Main {
         if (option == 2) {
             if (stringArray.length * stringArray[0].length <= 60 || numberRowForPrice <= 4) {
                 currentIncome = currentIncome + 10;
-                //stringArray[numberRowForPrice - 1][numberSeatForPrice - 1] = " B";
+                stringArray[numberRowForPrice - 1][numberSeatForPrice - 1] = " B";
                 System.out.printf("Ticket price: $%d\n", 10);
             } else {
                 currentIncome = currentIncome + 8;
-                //stringArray[numberRowForPrice - 1][numberSeatForPrice - 1] = " B";
+                stringArray[numberRowForPrice - 1][numberSeatForPrice - 1] = " B";
                 System.out.printf("Ticket price: $%d\n", 8);
             }
 
@@ -76,11 +76,16 @@ public class Main {
             System.out.printf("Number of purchased tickets: %d\n", countTicket);
             float percentage = (float) (100 * countTicket) / (seat * row);
             System.out.printf("Percentage: %.2f%s\n", percentage, p);
-
             System.out.printf("Current income $%d\n", currentIncome);
+
+            if(row * seat <= 60){
             String s = String.format("Total income: $%d\n", (row * seat) * 10);
             System.out.print(s);
-
+            }
+            if(row * seat > 60){
+                String s = String.format("Total income: $%d\n", ((4 * seat) * 10) + ((seat - 4) * seat) * 8);
+                System.out.print(s);
+            }
             System.out.println("1. Show the seats");
             System.out.println("2. Buy a ticket");
             System.out.println("3. Statistics");
@@ -98,36 +103,37 @@ public class Main {
         System.out.println("Enter the number of seats in each row:");
         int seat = sc.nextInt();
         String[][] str = new String[row][seat];
+        int[][]arrayError = new int[row+1][seat+1];
+        for (int i = 0; i < arrayError.length; i++) {
+            for (int j = 0; j < arrayError[i].length; j++) {
+                arrayError[i][j] = 0;
+            }
+        }
         mainMenu();
         int option = sc.nextInt();
         while (option != 0) {
+            if (option == 1) {
+                menuOption_1(option, str, numberRowForPrice, numberSeatForPrice, countTicket);
+            }
             if (option == 2) {
                 System.out.println("Enter a row number:");
                 numberRowForPrice = sc.nextInt();
                 System.out.println("Enter a seat number in that row:");
                 numberSeatForPrice = sc.nextInt();
-
-                if(str[numberRowForPrice - 1][numberSeatForPrice - 1] == null){
-                    str[numberRowForPrice - 1][numberSeatForPrice - 1] = " B";
-                    menuOption_1(option, str, numberRowForPrice, numberSeatForPrice, countTicket);
-                    countTicket++;
+                if(numberRowForPrice  > row || numberSeatForPrice  > seat){
+                    System.out.print("Wrong input!\n");
+                    continue;
                 }
-               else if(str[numberRowForPrice - 1][numberSeatForPrice - 1].equals(" B")){
-                    System.out.println("That ticket has already been purchased!");
-                    System.out.println("Enter a row number:");
-                    numberRowForPrice = sc.nextInt();
-                    System.out.println("Enter a seat number in that row:");
-                    numberSeatForPrice = sc.nextInt();
+                if(arrayError[numberRowForPrice][numberSeatForPrice] == 1){
+                    System.out.print("That ticket has already been purchased!\n");
+                    continue;
                 }
-                else  menuOption_1(option, str, numberRowForPrice, numberSeatForPrice, countTicket);
-                countTicket++;
-            }
-            if (option == 1) {
-                menuOption_1(option, str, numberRowForPrice, numberSeatForPrice, countTicket);
-            }
+               countTicket++;
+            menuOption_1(option, str, numberRowForPrice, numberSeatForPrice, countTicket);}
             if (option == 3) {
                 menuOption_1(option, str, numberRowForPrice, numberSeatForPrice, countTicket);
             }
+            arrayError[numberRowForPrice][numberSeatForPrice] = 1;
             option = sc.nextInt();
         }
     }
