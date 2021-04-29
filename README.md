@@ -1,2 +1,1 @@
 # academy jetbrains 
-вываываываыва ыаыаыа
