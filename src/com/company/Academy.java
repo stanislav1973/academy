@@ -37,7 +37,8 @@ public class Academy {
             }
         }
     }
-//fix the place
+
+    //fix the place
     public static int printRow(int[][] array, int number) {
         int row = 0;
         for (int i = 0; i < array.length; i++) {
@@ -45,10 +46,10 @@ public class Academy {
             for (int j = 1; j < array[i].length; j++) {
                 if (array[i][j - 1] + array[i][j] == 0) {
                     t++;
-                } if (t >= number) {
-                    row = i + 1;
                 }
-                else if (array[i][j - 1] < array[i][j]) {
+                if (t >= number) {
+                    row = i + 1;
+                } else if (array[i][j - 1] < array[i][j]) {
                     t = 1;
                 }
             }
@@ -58,87 +59,29 @@ public class Academy {
         }
         return row;
     }
-    //
-    public void testMain(){
-        int result = 0;
-        Scanner sc = new Scanner(System.in);
-        int row = sc.nextInt();
-        int column = sc.nextInt();
-        int[][]array = new int[row][column];
-        for (int i = 0; i < array.length ; i++) {
-            for (int j = 0; j < array[i].length ; j++) {
-                array[i][j] = sc.nextInt();
-            }
-        }
-        int number = sc.nextInt();
-        for (int i = 0; i < array.length; i++) {
-            int t = 1;
-            for (int j = 1; j < array[i].length; j++) {
-                if (array[i][j - 1] + array[i][j] == 0) {
-                    t++;
+
+    public static String tic_tacCheckString_X_O(String str) {
+        int count = 0;
+        boolean countX = true;
+        String s = "";
+        char[] ch = str.toCharArray();
+        char[][] array = new char[3][3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                array[i][j] = ch[count++];
+                if ((array[0][j] == 'X') || (array[1][j] == 'X') || (array[2][j] == 'X')) {
+                    s = "Yes";
+                    } else if ((array[0][i] == 'X') || (array[1][i] == 'X') || (array[2][i] == 'X')) {
+                        s = "Yes";
+                    }
+               else if((array[i][0] == 'X') || (array[i][1] == 'X') || (array[i][2] == 'X')){
+                    s =  "Yes";
                 }
-                if(t >= number){
-                    result = i + 1;
+                    else s = "No";
+                    System.out.print(" " + array[i][j]);
                 }
-                else if (array[i][j - 1] < array[i][j]) {
-                    t = 1;
-                }
+                System.out.println();
             }
-            if (result == i + 1) {
-                break;
-            }
+            return s;
         }
-        System.out.print(result);
-    }
-    //price ticket
-    public void testMain_1(){
-        Scanner sc = new Scanner(System.in);
-        int result = 0;
-        System.out.println("Enter the number of row:");
-        int row = sc.nextInt();
-        System.out.println("Enter the number of seats in each row:");
-        int seat = sc.nextInt();
-        System.out.println("Cinema:");
-        for (int i = 1; i <= seat; i++) {
-            if(i == 1){
-                System.out.print("  ");
-            }
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        for (int i = 1; i <=row; i++) {
-            System.out.print(i);
-            for (int j = 1; j <=seat; j++) {
-                System.out.print(" S");
-            }
-            System.out.println();
-        }
-        System.out.println("Enter a row number:");
-        int numberRowForPrice = sc.nextInt();
-        System.out.println("Enter a seat number in that row:");
-        int numberSeatForPrice = sc.nextInt();
-        if(row * seat <= 60 || numberRowForPrice <= 4){
-            System.out.print("Ticket price:" + "$" + "10\n");
-        }
-        else System.out.print("Ticket price:" + "$" + "8\n");
-        System.out.println("Cinema:");
-        for (int i = 1; i <= seat; i++) {
-            if(i == 1){
-                System.out.print("  ");
-            }
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        for (int i = 1; i <=row; i++) {
-            System.out.print(i);
-            for (int j = 1; j <=seat; j++) {
-                if(i == numberRowForPrice && j == numberSeatForPrice){
-                    System.out.print(" B");
-                    continue;
-                }
-                System.out.print(" S");
-            }
-            System.out.println();
-        }
-    }
     }
