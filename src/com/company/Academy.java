@@ -61,27 +61,35 @@ public class Academy {
     }
 
     public static String tic_tacCheckString_X_O(String str) {
-        int count = 0;
-        boolean countX = true;
-        String s = "";
+        int k = 0;
+        String space = "---------\n";
+        int countXO = 0;
         char[] ch = str.toCharArray();
+        System.out.print(space);
+        for (int i = 0; i < 3 ; i++) {
+            System.out.print("| " + ch[countXO++]);
+            System.out.print(" " + ch[countXO++]);
+            System.out.print(" " + ch[countXO++] + " |\n");
+        }
+        System.out.print(space);
+        int count = 0;
+        String s = "No";
+        int i = 0;
+        int j = 0;
         char[][] array = new char[3][3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                array[i][j] = ch[count++];
-                if ((array[0][j] == 'X') || (array[1][j] == 'X') || (array[2][j] == 'X')) {
-                    s = "Yes";
-                    } else if ((array[0][i] == 'X') || (array[1][i] == 'X') || (array[2][i] == 'X')) {
-                        s = "Yes";
-                    }
-               else if((array[i][0] == 'X') || (array[i][1] == 'X') || (array[i][2] == 'X')){
-                    s =  "Yes";
+        boolean b = true;
+                while (b) {
+                    array[i][j] = ch[count];
+                    if ((array[i][0] == 'X') && (array[i][1] == 'X') && (array[i][2] == 'X')) { k = 3;}
+                    if ((array[0][j] == 'X') && (array[1][j] == 'X') && (array[2][j] == 'X')) { k = 3; }
+
+                    if ((array[0][j] == 'X') && (array[1][1] == 'X') && (array[2][j] == 'X')) { k = 3; }
+                    if ((array[0][2] == 'X') && (array[1][1] == 'X') && (array[2][0] == 'X')) { k = 3; }
+                   if(k == 3){ s = "Yes"; b = false;}
+                   count++; j++;
+                    if(count == 9){ b= false; }
+                    if(j > 2 && k != 3){ i++; j = 0; k = 0; System.out.println();}
                 }
-                    else s = "No";
-                    System.out.print(" " + array[i][j]);
-                }
-                System.out.println();
-            }
             return s;
         }
     }
