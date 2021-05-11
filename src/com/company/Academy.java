@@ -80,13 +80,13 @@ public class Academy {
         boolean b = true;
                 while (b) {
                     array[i][j] = ch[count];
-                    if ((array[i][0] == 'X') && (array[i][1] == 'X') && (array[i][2] == 'X')) { k = 3;}
-                    if ((array[0][j] == 'X') && (array[1][j] == 'X') && (array[2][j] == 'X')) { k = 3; }
+                    if ((array[i][j] == 'X') && (array[i][array.length - 2] == 'X') && (array[i][array.length - 1] == 'X')) {k = 3;}
+                    if ((array[array.length - 2][j] == 'X') && (array[array.length - 2][j] == 'X') && (array[array.length - 2][j] == 'X')) { k = 3; }
 
                     if ((array[0][j] == 'X') && (array[1][1] == 'X') && (array[2][j] == 'X')) { k = 3; }
                     if ((array[0][2] == 'X') && (array[1][1] == 'X') && (array[2][0] == 'X')) { k = 3; }
                    if(k == 3){ s = "Yes"; b = false;}
-                   count++; j++;
+                        count++; j++;
                     if(count == 9){ b= false; }
                     if(j > 2 && k != 3){ i++; j = 0; k = 0; System.out.println();}
                 }
