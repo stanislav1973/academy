@@ -6,12 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Academy_1Test {
-    @Ignore
-        //@Test
-    void sumInRangeTest() {
-        int result = Academy_1.sumInRange(10000000, 1000000000);
-        assertEquals(1, result);
-    }
+
 
     @Test
     void testTic_TacCheckString_X_OYes() {
