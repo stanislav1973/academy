@@ -61,46 +61,75 @@ public class Academy {
     }
 
     public static String tic_tacCheckString_X_O(String str) {
-        int x = 0;
-        int o = 0;
         String space = "---------\n";
         int countXO = 0;
         char[] ch = str.toCharArray();
         System.out.print(space);
-        for (int i = 0; i < 3 ; i++) {
+        for (int i = 0; i < 3; i++) {
             System.out.print("| " + ch[countXO++]);
             System.out.print(" " + ch[countXO++]);
             System.out.print(" " + ch[countXO++] + " |\n");
         }
         System.out.print(space);
-        int count = 0;
+        boolean b_X = false;
+        boolean b_O = false;
         final char X = 'X';
         final char O = 'O';
-        final char XO = '_';
+        int countX = 0;
+        int countO = 0;
+        int count_ = 0;
         String answer = "";
-        int i = 0;
-        int j = 0;
-        char[][] array = new char[3][3];
-        boolean b = true;
-        while (b) {
-            array[i][j] = ch[count];
-            // for X
-            if ((array[i][0] == X) && (array[i][1] == X) && (array[i][2] == X)) { x = 3; answer = "X wins";}
-            if ((array[0][j] == X) && (array[1][j] == X) && (array[2][j] == X)) { x = 3; answer = "X wins";}
-            // diagonal
-            if ((array[0][0] == X) && (array[1][1] == X) && (array[2][2] == X)) { x = 3; answer = "X wins";}
-            if ((array[0][2] == X) && (array[1][1] == X) && (array[2][0] == X)) { x = 3; answer = "X wins";}
-            // for O
-            if ((array[i][0] == O) && (array[i][1] == O) && (array[i][2] == O)) { o = 3;answer = "O wins";}
-            if ((array[0][j] == O) && (array[1][j] == O) && (array[2][j] == O)) { o = 3; answer = "O wins";}
-            // diagonal
-            if ((array[0][0] == O) && (array[1][1] == O) && (array[2][2] == O)) { o = 3; answer = "O wins";}
-            if ((array[0][2] == O) && (array[1][1] == O) && (array[2][0] == O)) { o = 3; answer = "O wins";}
-            if(x == o){ answer = "Impossible";}
-            count++; j++;
-            if(count == 9){ b = false; }
-            if(j > 2 && x != 3){ i++; j = 0; x = 0; System.out.println(); }
-            if(j > 2 && o != 3){ i++; j = 0; o = 0; System.out.println(); }
+        for(char t : ch){
+            if(t == X){
+                countX++;
+            }
+            if(t == O){
+                countO++;
+            }
+            if(t == '_'){
+                count_++;
+            }
+        }
+
+        if((ch[0] == X && ch[1] == X && ch[2] == X) || (ch[3] == X && ch[4] == X && ch[5] == X) || (ch[6] == X && ch[7] == X && ch[8] == X)
+        && Math.abs(countX - countO) < 2){
+        answer = "X wins";
+            b_X = true;
+        }
+        if((ch[0] == X && ch[3] == X && ch[6] == X) || (ch[1] == X && ch[4] == X && ch[7] == X) || (ch[2] == X && ch[5] == X && ch[8] == X)
+                && Math.abs(countX - countO) < 2){
+            answer = "X wins";
+            b_X = true;
+        }
+        if((ch[0] == X && ch[4] == X && ch[8] == X) || (ch[2] == X && ch[4] == X && ch[6] == X)
+                && Math.abs(countX - countO) < 2){
+            answer = "X wins";
+            b_X = true;
+        }
+
+        if((ch[0] == O && ch[1] == O && ch[2] == O) || (ch[3] == O && ch[4] == O && ch[5] == O) || (ch[6] == O && ch[7] == O && ch[8] == O)
+                && Math.abs(countX - countO) < 2){
+            answer = "O wins";
+            b_O = true;
+        }
+        if((ch[0] == O && ch[3] == O && ch[6] == O) || (ch[1] == O && ch[4] == O && ch[7] == O) || (ch[2] == O && ch[5] == O && ch[8] == O)
+                && Math.abs(countX - countO) < 2){
+            answer = "O wins";
+            b_O = true;
+        }
+        if((ch[0] == O && ch[4] == O && ch[8] == O) || (ch[2] == O && ch[4] == O && ch[6] == O)
+                && Math.abs(countX - countO) < 2){
+            answer = "O wins";
+            b_X = true;
+        }
+        if (b_X && b_O  || Math.abs(countX - countO) > 1) {
+            answer = "Impossible";
+        }
+        if(!b_X && !b_O && count_ > 0 && Math.abs(countX - countO) < 2){
+            answer = "Game not finished";
+        }
+        if(!b_X && !b_O && count_ < 1 && Math.abs(countX - countO) < 2){
+            answer = "Draw";
         }
         return answer;
     }

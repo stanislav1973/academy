@@ -18,8 +18,8 @@ public class Main {
 //        }
 //        System.out.print(space);
 
-        String s = Academy.tic_tacCheckString_X_O("___OXX_O_");
-        System.out.print("\n" + s);
+       int i = 3;
+       System.out.print(2 - 7);
     }
 }
 
