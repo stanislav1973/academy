@@ -71,38 +71,38 @@ public class Academy {
         }
         System.out.print(space);
     }
-   public static void getCoordinates(String str, int firstCoordinates, int twoCoordinates) {
 
-       String space = "---------\n";
-       char[] ch = str.toCharArray();
-       int count = 0;
-       char[][] array = new char[3][3];
-       for (int k = 0; k < array.length; k++) {
-           for (int l = 0; l < array[k].length; l++) {
-               array[k][l] = ch[count++];
-           }
-       }
-       if(array[firstCoordinates - 1][twoCoordinates - 1] == 'X' || array[firstCoordinates - 1][twoCoordinates - 1] == 'O'){
-                   System.out.print("This cell is occupied! Choose another one!\n");
-           System.out.print("Enter the coordinates: ");
+    public static void getCoordinates(String str, int firstCoordinates, int twoCoordinates) {
+        String space = "---------\n";
+        char[] ch = str.toCharArray();
+        int count = 0;
+        char[][] array = new char[3][3];
+        for (int k = 0; k < array.length; k++) {
+            for (int l = 0; l < array[k].length; l++) {
+                array[k][l] = ch[count++];
+            }
+        }
+        if (array[firstCoordinates - 1][twoCoordinates - 1] == 'X' || array[firstCoordinates - 1][twoCoordinates - 1] == 'O') {
+            System.out.print("This cell is occupied! Choose another one!\n");
+            System.out.print("Enter the coordinates: ");
             Main.inputScanner();
-             }
+        }
 
-      if(array[firstCoordinates - 1][twoCoordinates - 1] == '_') {
-          System.out.print(space);
-          for (int i = 0; i < array.length; i++) {
-              System.out.print("| ");
-              for (int j = 0; j < array[i].length; j++) {
-                  if (i == firstCoordinates - 1 && j == twoCoordinates - 1 && array[i][j] == '_') {
-                      array[firstCoordinates - 1][twoCoordinates - 1] = 'X';
-                      System.out.print(array[firstCoordinates - 1][twoCoordinates - 1] + " ");
-                      continue;
-                  }
-                  System.out.print(array[i][j] + " ");
-              }
-              System.out.println("|");
-          }
-          System.out.print(space);
-      }
-   }
+        if (array[firstCoordinates - 1][twoCoordinates - 1] == '_') {
+            System.out.print(space);
+            for (int i = 0; i < array.length; i++) {
+                System.out.print("| ");
+                for (int j = 0; j < array[i].length; j++) {
+                    if (i == firstCoordinates - 1 && j == twoCoordinates - 1 && array[i][j] == '_') {
+                        array[firstCoordinates - 1][twoCoordinates - 1] = 'X';
+                        System.out.print(array[firstCoordinates - 1][twoCoordinates - 1] + " ");
+                        continue;
+                    }
+                    System.out.print(array[i][j] + " ");
+                }
+                System.out.println("|");
+            }
+            System.out.print(space);
+        }
+    }
 }
