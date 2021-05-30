@@ -1,25 +1,37 @@
 package com.company;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
+    public static String scanner(){
+        Scanner s = new Scanner(System.in);;
+        return s.nextLine();
+    }
+    public static void inputScanner() {
+        Scanner s = new Scanner(System.in);
+        try {
+        String number = s.nextLine();
+        String[] i = number.split(" ");
+        int first = Integer.parseInt(i[0]);
+        int two = Integer.parseInt(i[1]);
+            Academy.getCoordinates("___OXX_O_",first,two);
+        } catch (NumberFormatException e) {
+            System.out.print("You should enter numbers!\n");
+            System.out.print("Enter the coordinates: ");
+            inputScanner();
+        }
+        catch (RuntimeException e){
+            System.out.print("Coordinates should be from 1 to 3!\n");
+            System.out.print("Enter the coordinates: ");
+            inputScanner();
+        }
+    }
     public static void main(String[] args) {
-//        String space = "---------\n";
-//        int count = 0;
-//        System.out.print("Enter cells:");
-//        Scanner sc = new Scanner(System.in);
-//        String str = sc.nextLine();
-//        sc.close();
-//        char[] t = str.toCharArray() ;
-//        System.out.print(space);
-//        for (int i = 0; i < 3 ; i++) {
-//            System.out.print("| " + t[count++]);
-//            System.out.print(" " + t[count++]);
-//            System.out.print(" " + t[count++] + " |\n");
-//        }
-//        System.out.print(space);
+       // String str = scanner();
+        Academy.tic_tacCheckString_X_O("___OXX_O_");
+        System.out.print("Enter the coordinates: ");
+        inputScanner();
 
-        String s = Academy.tic_tacCheckString_X_O("___OXX_O_");
-        System.out.print("\n" + s);
     }
 }
 

@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Academy {
@@ -60,48 +59,50 @@ public class Academy {
         return row;
     }
 
-    public static String tic_tacCheckString_X_O(String str) {
-        int x = 0;
-        int o = 0;
+    public static void tic_tacCheckString_X_O(String str) {
         String space = "---------\n";
         int countXO = 0;
         char[] ch = str.toCharArray();
         System.out.print(space);
-        for (int i = 0; i < 3 ; i++) {
+        for (int i = 0; i < 3; i++) {
             System.out.print("| " + ch[countXO++]);
             System.out.print(" " + ch[countXO++]);
             System.out.print(" " + ch[countXO++] + " |\n");
         }
         System.out.print(space);
-        int count = 0;
-        final char X = 'X';
-        final char O = 'O';
-        final char XO = '_';
-        String answer = "";
-        int i = 0;
-        int j = 0;
-        char[][] array = new char[3][3];
-        boolean b = true;
-        while (b) {
-            array[i][j] = ch[count];
-            // for X
-            if ((array[i][0] == X) && (array[i][1] == X) && (array[i][2] == X)) { x = 3; answer = "X wins";}
-            if ((array[0][j] == X) && (array[1][j] == X) && (array[2][j] == X)) { x = 3; answer = "X wins";}
-            // diagonal
-            if ((array[0][0] == X) && (array[1][1] == X) && (array[2][2] == X)) { x = 3; answer = "X wins";}
-            if ((array[0][2] == X) && (array[1][1] == X) && (array[2][0] == X)) { x = 3; answer = "X wins";}
-            // for O
-            if ((array[i][0] == O) && (array[i][1] == O) && (array[i][2] == O)) { o = 3;answer = "O wins";}
-            if ((array[0][j] == O) && (array[1][j] == O) && (array[2][j] == O)) { o = 3; answer = "O wins";}
-            // diagonal
-            if ((array[0][0] == O) && (array[1][1] == O) && (array[2][2] == O)) { o = 3; answer = "O wins";}
-            if ((array[0][2] == O) && (array[1][1] == O) && (array[2][0] == O)) { o = 3; answer = "O wins";}
-            if(x == o){ answer = "Impossible";}
-            count++; j++;
-            if(count == 9){ b = false; }
-            if(j > 2 && x != 3){ i++; j = 0; x = 0; System.out.println(); }
-            if(j > 2 && o != 3){ i++; j = 0; o = 0; System.out.println(); }
-        }
-        return answer;
     }
+   public static void getCoordinates(String str, int firstCoordinates, int twoCoordinates) {
+
+       String space = "---------\n";
+       char[] ch = str.toCharArray();
+       int count = 0;
+       char[][] array = new char[3][3];
+       for (int k = 0; k < array.length; k++) {
+           for (int l = 0; l < array[k].length; l++) {
+               array[k][l] = ch[count++];
+           }
+       }
+       if(array[firstCoordinates - 1][twoCoordinates - 1] == 'X' || array[firstCoordinates - 1][twoCoordinates - 1] == 'O'){
+                   System.out.print("This cell is occupied! Choose another one!\n");
+           System.out.print("Enter the coordinates: ");
+            Main.inputScanner();
+             }
+
+      if(array[firstCoordinates - 1][twoCoordinates - 1] == '_') {
+          System.out.print(space);
+          for (int i = 0; i < array.length; i++) {
+              System.out.print("| ");
+              for (int j = 0; j < array[i].length; j++) {
+                  if (i == firstCoordinates - 1 && j == twoCoordinates - 1 && array[i][j] == '_') {
+                      array[firstCoordinates - 1][twoCoordinates - 1] = 'X';
+                      System.out.print(array[firstCoordinates - 1][twoCoordinates - 1] + " ");
+                      continue;
+                  }
+                  System.out.print(array[i][j] + " ");
+              }
+              System.out.println("|");
+          }
+          System.out.print(space);
+      }
+   }
 }
