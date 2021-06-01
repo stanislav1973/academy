@@ -1,15 +1,8 @@
 package com.company;
-
-import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     static int[] arr = new int[0];
-    public static void scanner() {
-        Scanner sc = new Scanner(System.in);
-        sc.nextLine();
-    }
 
     public static int[] scannerInput() {
         Scanner sc = new Scanner(System.in);
@@ -26,17 +19,17 @@ public class Main {
             System.out.print("Enter the coordinates: ");
             scannerInput();
         }
+        if(arr[0] > 3 || arr[1] > 3){
+            System.out.print("Coordinates should be from 1 to 3!\n");
+            System.out.print("Enter the coordinates: ");
+            scannerInput();
+        }
         return arr;
     }
         public static void inputMethod() {
                 System.out.print("Enter the coordinates: ");
-            try {
                 arr = scannerInput();
-            } catch (RuntimeException e) {
-                System.out.print("This cell is occupied! Choose another one!\n");
-                scannerInput();
             }
-        }
     public static void main(String[] args) {
         String str = "         \n";
         Academy.tic_tacCheckString_X_O(str);

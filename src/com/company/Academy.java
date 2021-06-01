@@ -85,19 +85,6 @@ public class Academy {
             }
         }
         while (countGame < 9) {
-//            if(firstCoordinates > 3 || twoCoordinates > 3){
-//                try {
-//                    System.out.print("Coordinates should be from 1 to 3!\n");
-//                    System.out.print("Enter the coordinates: ");
-//                    String  s = Main.scanner();
-//                    String[]strAr = s.split(" ");
-//                    firstCoordinates = Integer.parseInt(strAr[0]);
-//                    twoCoordinates = Integer.parseInt(strAr[1]);
-//                } catch (RuntimeException e) {
-//                    System.out.print("Coordinates should be from 1 to 3!\n");
-//                    System.out.print("Enter the coordinates: ");
-//                }
-//            }
             if (array[firstCoordinates - 1][twoCoordinates - 1] == 'X' || array[firstCoordinates - 1][twoCoordinates - 1] == 'O') {
                 System.out.print("This cell is occupied! Choose another one!\n");
                 countGame--;
