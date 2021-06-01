@@ -1,38 +1,40 @@
 package com.company;
+
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    public static String str;
-    public static String scanner(){
-        Scanner s = new Scanner(System.in);;
-        return s.nextLine();
+    private static String str;
+
+    public static String scanner() {
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
     }
-    public static void inputScanner() {
+
+    public static void scannerInput() {
+        boolean b = true;
+        int count = 0;
+        System.out.print("Enter the coordinates: ");
         try {
-        String number = scanner();
-        String[] i = number.split(" ");
-        int first = Integer.parseInt(i[0]);
-        int two = Integer.parseInt(i[1]);
-            Academy.getCoordinates(str,first,two);
-        } catch (NumberFormatException e) {
+            Scanner sc = new Scanner(System.in);
+            int firstCoordinates = sc.nextInt();
+            int twoCoordinates = sc.nextInt();
+            Academy.getCoordinates(str, firstCoordinates, twoCoordinates, true,true);
+        } catch (InputMismatchException e) {
             System.out.print("You should enter numbers!\n");
-            System.out.print("Enter the coordinates: ");
-            inputScanner();
+            scannerInput();
         }
         catch (RuntimeException e){
             System.out.print("Coordinates should be from 1 to 3!\n");
-            System.out.print("Enter the coordinates: ");
-            inputScanner();
+            scannerInput();
         }
     }
-    public static void main(String[] args) {
-        System.out.print("Enter cells: ");
-         str = scanner();
-        Academy.tic_tacCheckString_X_O(str);
-        System.out.print("Enter the coordinates: ");
-        inputScanner();
 
+    public static void main(String[] args) {
+        str = "         \n";
+        Academy.tic_tacCheckString_X_O(str);
+        scannerInput();
     }
 }
 

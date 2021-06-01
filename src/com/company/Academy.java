@@ -72,37 +72,68 @@ public class Academy {
         System.out.print(space);
     }
 
-    public static void getCoordinates(String str, int firstCoordinates, int twoCoordinates) {
-        String space = "---------\n";
-        char[] ch = str.toCharArray();
-        int count = 0;
-        char[][] array = new char[3][3];
-        for (int k = 0; k < array.length; k++) {
-            for (int l = 0; l < array[k].length; l++) {
-                array[k][l] = ch[count++];
-            }
-        }
-        if (array[firstCoordinates - 1][twoCoordinates - 1] == 'X' || array[firstCoordinates - 1][twoCoordinates - 1] == 'O') {
-            System.out.print("This cell is occupied! Choose another one!\n");
-            System.out.print("Enter the coordinates: ");
-            Main.inputScanner();
-        }
-
-        if (array[firstCoordinates - 1][twoCoordinates - 1] == '_') {
-            System.out.print(space);
-            for (int i = 0; i < array.length; i++) {
-                System.out.print("| ");
-                for (int j = 0; j < array[i].length; j++) {
-                    if (i == firstCoordinates - 1 && j == twoCoordinates - 1 && array[i][j] == '_') {
-                        array[firstCoordinates - 1][twoCoordinates - 1] = 'X';
-                        System.out.print(array[firstCoordinates - 1][twoCoordinates - 1] + " ");
-                        continue;
-                    }
-                    System.out.print(array[i][j] + " ");
+    public static void getCoordinates(String str, int firstCoordinates, int twoCoordinates, boolean moveX, boolean moveO) {
+        int countGame = 0;
+            String space = "---------\n";
+            char[] ch = str.toCharArray();
+            int count = 0;
+            char[][] array = new char[3][3];
+            for (int k = 0; k < array.length; k++) {
+                for (int l = 0; l < array[k].length; l++) {
+                    array[k][l] = ch[count++];
                 }
-                System.out.println("|");
             }
-            System.out.print(space);
+        while (countGame < 9) {
+            if (array[firstCoordinates - 1][twoCoordinates - 1] == 'X' || array[firstCoordinates - 1][twoCoordinates - 1] == 'O') {
+                System.out.print("This cell is occupied! Choose another one!\n");
+                countGame--;
+            }
+
+            if (array[firstCoordinates - 1][twoCoordinates - 1] == ' '&& moveX) {
+                System.out.print(space);
+                for (int i = 0; i < array.length; i++) {
+                    System.out.print("| ");
+                    for (int j = 0; j < array[i].length; j++) {
+                        if (i == firstCoordinates - 1 && j == twoCoordinates - 1 && array[i][j] == ' ') {
+                            moveX = false;
+                            array[firstCoordinates - 1][twoCoordinates - 1] = 'X';
+                            System.out.print(array[firstCoordinates - 1][twoCoordinates - 1] + " ");
+                            continue;
+                        }
+                        System.out.print(array[i][j] + " ");
+                    }
+                    System.out.println("|");
+                }
+                System.out.print(space);
+            }
+            if (array[firstCoordinates - 1][twoCoordinates - 1] == ' '&& moveO) {
+                System.out.print(space);
+                for (int i = 0; i < array.length; i++) {
+                    System.out.print("| ");
+                    for (int j = 0; j < array[i].length; j++) {
+                        if (i == firstCoordinates - 1 && j == twoCoordinates - 1 && array[i][j] == ' ') {
+                            moveX = true;
+                            array[firstCoordinates - 1][twoCoordinates - 1] = 'O';
+                            System.out.print(array[firstCoordinates - 1][twoCoordinates - 1] + " ");
+                            continue;
+                        }
+                        System.out.print(array[i][j] + " ");
+                    }
+                    System.out.println("|");
+                }
+                System.out.print(space);
+            }
+
+            countGame ++;
+            if(countGame == 9){
+                break;
+            }
+            System.out.print("Enter the coordinates: ");
+           String s =  Main.scanner();
+           String[] strArray = s.split(" ");
+           firstCoordinates = Integer.parseInt(strArray[0]);
+           twoCoordinates = Integer.parseInt(strArray[1]);
+
         }
     }
 }
