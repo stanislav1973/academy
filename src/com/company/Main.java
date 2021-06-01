@@ -5,38 +5,47 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    private static String str;
-
-    public static String scanner() {
+    static int[] arr = new int[0];
+    public static void scanner() {
         Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
+        sc.nextLine();
     }
 
-    public static void scannerInput() {
-        boolean b = true;
-        int count = 0;
-        System.out.print("Enter the coordinates: ");
+    public static int[] scannerInput() {
+        Scanner sc = new Scanner(System.in);
         try {
-            Scanner sc = new Scanner(System.in);
-            int firstCoordinates = sc.nextInt();
-            int twoCoordinates = sc.nextInt();
-            Academy.getCoordinates(str, firstCoordinates, twoCoordinates, true,true);
-        } catch (InputMismatchException e) {
+            arr = new int[2];
+            String s = sc.nextLine();
+            String[]strAr = s.split(" ");
+            int firstCoordinates = Integer.parseInt(strAr[0]);
+            int twoCoordinates = Integer.parseInt(strAr[1]);
+            arr[0] = firstCoordinates;
+            arr[1] = twoCoordinates;
+        } catch (NumberFormatException e) {
             System.out.print("You should enter numbers!\n");
+            System.out.print("Enter the coordinates: ");
             scannerInput();
         }
-        catch (RuntimeException e){
-            System.out.print("Coordinates should be from 1 to 3!\n");
-            scannerInput();
-        }
+        return arr;
     }
-
+        public static void inputMethod() {
+                System.out.print("Enter the coordinates: ");
+            try {
+                arr = scannerInput();
+            } catch (RuntimeException e) {
+                System.out.print("This cell is occupied! Choose another one!\n");
+                scannerInput();
+            }
+        }
     public static void main(String[] args) {
-        str = "         \n";
+        String str = "         \n";
         Academy.tic_tacCheckString_X_O(str);
-        scannerInput();
+        inputMethod();
+        Academy.getCoordinates(str, arr[0], arr[1], true, true);
     }
 }
+
+
 
 
 

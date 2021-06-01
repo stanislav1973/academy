@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Academy {
@@ -74,22 +75,35 @@ public class Academy {
 
     public static void getCoordinates(String str, int firstCoordinates, int twoCoordinates, boolean moveX, boolean moveO) {
         int countGame = 0;
-            String space = "---------\n";
-            char[] ch = str.toCharArray();
-            int count = 0;
-            char[][] array = new char[3][3];
-            for (int k = 0; k < array.length; k++) {
-                for (int l = 0; l < array[k].length; l++) {
-                    array[k][l] = ch[count++];
-                }
+        String space = "---------\n";
+        char[] ch = str.toCharArray();
+        int count = 0;
+        char[][] array = new char[3][3];
+        for (int k = 0; k < array.length; k++) {
+            for (int l = 0; l < array[k].length; l++) {
+                array[k][l] = ch[count++];
             }
+        }
         while (countGame < 9) {
+//            if(firstCoordinates > 3 || twoCoordinates > 3){
+//                try {
+//                    System.out.print("Coordinates should be from 1 to 3!\n");
+//                    System.out.print("Enter the coordinates: ");
+//                    String  s = Main.scanner();
+//                    String[]strAr = s.split(" ");
+//                    firstCoordinates = Integer.parseInt(strAr[0]);
+//                    twoCoordinates = Integer.parseInt(strAr[1]);
+//                } catch (RuntimeException e) {
+//                    System.out.print("Coordinates should be from 1 to 3!\n");
+//                    System.out.print("Enter the coordinates: ");
+//                }
+//            }
             if (array[firstCoordinates - 1][twoCoordinates - 1] == 'X' || array[firstCoordinates - 1][twoCoordinates - 1] == 'O') {
                 System.out.print("This cell is occupied! Choose another one!\n");
                 countGame--;
             }
 
-            if (array[firstCoordinates - 1][twoCoordinates - 1] == ' '&& moveX) {
+            if (array[firstCoordinates - 1][twoCoordinates - 1] == ' ' && moveX) {
                 System.out.print(space);
                 for (int i = 0; i < array.length; i++) {
                     System.out.print("| ");
@@ -106,7 +120,7 @@ public class Academy {
                 }
                 System.out.print(space);
             }
-            if (array[firstCoordinates - 1][twoCoordinates - 1] == ' '&& moveO) {
+            if (array[firstCoordinates - 1][twoCoordinates - 1] == ' ' && moveO) {
                 System.out.print(space);
                 for (int i = 0; i < array.length; i++) {
                     System.out.print("| ");
@@ -123,17 +137,53 @@ public class Academy {
                 }
                 System.out.print(space);
             }
-
-            countGame ++;
-            if(countGame == 9){
+            String endGame = theEndInput(array);
+            if (endGame.equals("X wins") || endGame.equals("O wins")) {
+                System.out.print(endGame);
+                break;
+            }
+            countGame++;
+            if (countGame == 9) {
                 break;
             }
             System.out.print("Enter the coordinates: ");
-           String s =  Main.scanner();
-           String[] strArray = s.split(" ");
-           firstCoordinates = Integer.parseInt(strArray[0]);
-           twoCoordinates = Integer.parseInt(strArray[1]);
-
+                int[]arr = Main.scannerInput();
+                firstCoordinates = arr[0];
+                twoCoordinates = arr[1];
         }
     }
+
+    public static String theEndInput(char[][] array) {
+        final char X = 'X';
+        final char O = 'O';
+        int count = 0;
+        char[] ch = new char[9];
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                ch[count++] = array[i][j];
+            }
+        }
+        String answer = "";
+        if ((ch[0] == X && ch[1] == X && ch[2] == X) || (ch[3] == X && ch[4] == X && ch[5] == X) || (ch[6] == X && ch[7] == X && ch[8] == X)) {
+            answer = "X wins";
+        }
+        if ((ch[0] == X && ch[3] == X && ch[6] == X) || (ch[1] == X && ch[4] == X && ch[7] == X) || (ch[2] == X && ch[5] == X && ch[8] == X)) {
+            answer = "X wins";
+        }
+        if ((ch[0] == X && ch[4] == X && ch[8] == X) || (ch[2] == X && ch[4] == X && ch[6] == X)) {
+            answer = "X wins";
+        }
+
+        if ((ch[0] == O && ch[1] == O && ch[2] == O) || (ch[3] == O && ch[4] == O && ch[5] == O) || (ch[6] == O && ch[7] == O && ch[8] == O)) {
+            answer = "O wins";
+        }
+        if ((ch[0] == O && ch[3] == O && ch[6] == O) || (ch[1] == O && ch[4] == O && ch[7] == O) || (ch[2] == O && ch[5] == O && ch[8] == O)) {
+            answer = "O wins";
+        }
+        if ((ch[0] == O && ch[4] == O && ch[8] == O) || (ch[2] == O && ch[4] == O && ch[6] == O)) {
+            answer = "O wins";
+        }
+        return answer;
+    }
 }
+
