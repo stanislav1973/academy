@@ -1,8 +1,5 @@
 package com.company;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 public class Academy {
     String findMaximumElementMatrix(int[][] arr) {
         int row = 0;
@@ -71,6 +68,7 @@ public class Academy {
             System.out.print(" " + ch[countXO++] + " |\n");
         }
         System.out.print(space);
+        System.out.print("Enter the coordinates: ");
     }
 
     public static void getCoordinates(String str, int firstCoordinates, int twoCoordinates, boolean moveX, boolean moveO) {
@@ -89,7 +87,6 @@ public class Academy {
                 System.out.print("This cell is occupied! Choose another one!\n");
                 countGame--;
             }
-
             if (array[firstCoordinates - 1][twoCoordinates - 1] == ' ' && moveX) {
                 System.out.print(space);
                 for (int i = 0; i < array.length; i++) {
