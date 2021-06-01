@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class Academy_1Test {
 
+<<<<<<< HEAD
 
     @Test
     void testTic_TacCheckString_X_OYes() {
@@ -69,4 +70,6 @@ public class Academy_1Test {
         assertEquals(s,"Draw");
     }
 
+=======
+>>>>>>> tictac5
 }
