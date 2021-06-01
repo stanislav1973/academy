@@ -128,6 +128,7 @@ public class Academy {
             }
             countGame++;
             if (countGame == 9) {
+                System.out.print("Draw");
                 break;
             }
             System.out.print("Enter the coordinates: ");
