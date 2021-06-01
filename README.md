@@ -1,2 +1,1 @@
-# academy
-game tictac
+# academyJetbrains
