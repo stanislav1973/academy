@@ -1,143 +1,40 @@
 package com.company;
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    private static int currentIncome;
-    protected static String[][] stringArray;
-
-    public static void mainMenu() {
-        System.out.println("1. Show the seats");
-        System.out.println("2. Buy a ticket");
-        System.out.println("3. Statistics");
-        System.out.println("0. Exit");
-    }
-
-    public static void menuOption_1(int option, String[][] str, int numberRowForPrice, int numberSeatForPrice, int countTicket) {
-        stringArray = str;
-        int row = str.length;
-        int seat = str[0].length;
-        int count = 1;
-        if (option == 1) {
-            System.out.println("Cinema:");
-            for (int i = 1; i < str[0].length + 1; i++) {
-                if (i == 1) {
-                    System.out.print("  ");
-                }
-                System.out.print(i + " ");
-            }
-            System.out.println();
-            for (int i = 0; i < str.length; i++) {
-                System.out.print(count++);
-                for (int j = 0; j < str[i].length; j++) {
-                    if (numberRowForPrice - 1 == i && numberSeatForPrice - 1 == j && stringArray[i][j] == null) {
-                        stringArray[i][j] = " B";
-                        System.out.print(str[i][j]);
-                        continue;
-                    } else if (numberRowForPrice != 0 && numberSeatForPrice != 0 && i == (numberRowForPrice - 1) && j == (numberSeatForPrice - 1)) {
-                        String y = stringArray[i][j].replace(" S", " B");
-                        stringArray[i][j] = y;
-                        System.out.print(stringArray[i][j]);
-                        continue;
-                    } else if (stringArray[i][j] != null && stringArray[i][j].equals(" B")) {
-                        stringArray[i][j] = " B";
-                        System.out.print(stringArray[i][j]);
-                        continue;
-                    }
-                    stringArray[i][j] = " S";
-                    System.out.print(stringArray[i][j]);
-                }
-                System.out.println();
-            }
-            System.out.println("1. Show the seats");
-            System.out.println("2. Buy a ticket");
-            System.out.println("3. Statistics");
-            System.out.println("0. Exit");
-        }
-        if (option == 2) {
-            if (stringArray.length * stringArray[0].length <= 60 || numberRowForPrice <= 4) {
-                currentIncome = currentIncome + 10;
-                stringArray[numberRowForPrice - 1][numberSeatForPrice - 1] = " B";
-                System.out.printf("Ticket price: $%d\n", 10);
-            } else {
-                currentIncome = currentIncome + 8;
-                stringArray[numberRowForPrice - 1][numberSeatForPrice - 1] = " B";
-                System.out.printf("Ticket price: $%d\n", 8);
-            }
-
-            System.out.println("1. Show the seats");
-            System.out.println("2. Buy a ticket");
-            System.out.println("3. Statistics");
-            System.out.println("0. Exit");
-        }
-        if (option == 3) {
-            String p = "%";
-            System.out.printf("Number of purchased tickets: %d\n", countTicket);
-            float percentage = (float) (100 * countTicket) / (seat * row);
-            System.out.printf("Percentage: %.2f%s\n", percentage, p);
-            System.out.printf("Current income $%d\n", currentIncome);
-
-            if(row * seat <= 60){
-            String s = String.format("Total income: $%d\n", (row * seat) * 10);
-            System.out.print(s);
-            }
-            if(row * seat > 60){
-                String s = String.format("Total income: $%d\n", ((4 * seat) * 10) + ((seat - 4) * seat) * 8);
-                System.out.print(s);
-            }
-            System.out.println("1. Show the seats");
-            System.out.println("2. Buy a ticket");
-            System.out.println("3. Statistics");
-            System.out.println("0. Exit");
-        }
-    }
-
-    public static void main(String[] args) {
-        int numberRowForPrice = 0;
-        int numberSeatForPrice = 0;
-        int countTicket = 0;
+    public static int[] scannerInput() {
+        int[] arr = new int[2];
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the number of rows:");
-        int row = sc.nextInt();
-        System.out.println("Enter the number of seats in each row:");
-        int seat = sc.nextInt();
-        String[][] str = new String[row][seat];
-        int[][]arrayError = new int[row+1][seat+1];
-        for (int i = 0; i < arrayError.length; i++) {
-            for (int j = 0; j < arrayError[i].length; j++) {
-                arrayError[i][j] = 0;
-            }
+        try {
+            String s = sc.nextLine();
+            String[]strAr = s.split(" ");
+            arr[0] = Integer.parseInt(strAr[0]);
+            arr[1] = Integer.parseInt(strAr[1]);
+
+        } catch (NumberFormatException e) {
+            System.out.print("You should enter numbers!\n");
+            System.out.print("Enter the coordinates: ");
+            return scannerInput();
         }
-        mainMenu();
-        int option = sc.nextInt();
-        while (option != 0) {
-            if (option == 1) {
-                menuOption_1(option, str, numberRowForPrice, numberSeatForPrice, countTicket);
-            }
-            if (option == 2) {
-                System.out.println("Enter a row number:");
-                numberRowForPrice = sc.nextInt();
-                System.out.println("Enter a seat number in that row:");
-                numberSeatForPrice = sc.nextInt();
-                if(numberRowForPrice  > row || numberSeatForPrice  > seat){
-                    System.out.print("Wrong input!\n");
-                    continue;
-                }
-                if(arrayError[numberRowForPrice][numberSeatForPrice] == 1){
-                    System.out.print("That ticket has already been purchased!\n");
-                    continue;
-                }
-               countTicket++;
-            menuOption_1(option, str, numberRowForPrice, numberSeatForPrice, countTicket);}
-            if (option == 3) {
-                menuOption_1(option, str, numberRowForPrice, numberSeatForPrice, countTicket);
-            }
-            arrayError[numberRowForPrice][numberSeatForPrice] = 1;
-            option = sc.nextInt();
+        if(arr[0] > 3 || arr[1] > 3){
+            System.out.print("Coordinates should be from 1 to 3!\n");
+            System.out.print("Enter the coordinates: ");
+            return scannerInput();
         }
+        return arr;
+    }
+    public static void main(String[] args) {
+        String str = "         \n";
+        Academy.tic_tacCheckString_X_O(str);
+        int[]arr = scannerInput();
+        Academy.getCoordinates(str, arr[0], arr[1], true, true);
     }
 }
+
+
+
+
+
 
 
 

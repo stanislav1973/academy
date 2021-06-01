@@ -1,144 +1,117 @@
 package com.company;
 
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class Academy {
-    String findMaximumElementMatrix(int[][] arr) {
-        int row = 0;
-        int column = 0;
-        int max = arr[0][0];
-
-        for (int k = 0; k < arr.length; k++) {
-            for (int l = 0; l < arr[k].length; l++) {
-                if (arr[k][l] > max) {
-                    row = k;
-                    column = l;
-                    max = arr[k][l];
-                }
-            }
+    public static void tic_tacCheckString_X_O(String str) {
+        String space = "---------\n";
+        int countXO = 0;
+        char[] ch = str.toCharArray();
+        System.out.print(space);
+        for (int i = 0; i < 3; i++) {
+            System.out.print("| " + ch[countXO++]);
+            System.out.print(" " + ch[countXO++]);
+            System.out.print(" " + ch[countXO++] + " |\n");
         }
-        return row + " " + column;
+        System.out.print(space);
+        System.out.print("Enter the coordinates: ");
     }
 
-    public static void reverse(int[][] array) {
-
-        int[][] arr = new int[3][4];
-        for (int i = 0; i < array.length; i++) {
-            int count = 0;
-            for (int j = array[i].length - 1; j >= 0; j--) {
-                arr[i][count] = array[i][j];
-                count++;
+    public static void getCoordinates(String str, int firstCoordinates, int twoCoordinates, boolean moveX, boolean moveO) {
+        int countGame = 0;
+        String space = "---------\n";
+        char[] ch = str.toCharArray();
+        int count = 0;
+        char[][] array = new char[3][3];
+        for (int k = 0; k < array.length; k++) {
+            for (int l = 0; l < array[k].length; l++) {
+                array[k][l] = ch[count++];
             }
         }
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
-                array[i][j] = arr[i][j];
+        while (countGame < 9) {
+            if (array[firstCoordinates - 1][twoCoordinates - 1] == 'X' || array[firstCoordinates - 1][twoCoordinates - 1] == 'O') {
+                System.out.print("This cell is occupied! Choose another one!\n");
+                countGame--;
             }
-        }
-    }
-//fix the place
-    public static int printRow(int[][] array, int number) {
-        int row = 0;
-        for (int i = 0; i < array.length; i++) {
-            int t = 1;
-            for (int j = 1; j < array[i].length; j++) {
-                if (array[i][j - 1] + array[i][j] == 0) {
-                    t++;
-                } if (t >= number) {
-                    row = i + 1;
+            if (array[firstCoordinates - 1][twoCoordinates - 1] == ' ' && moveX) {
+                System.out.print(space);
+                for (int i = 0; i < array.length; i++) {
+                    System.out.print("| ");
+                    for (int j = 0; j < array[i].length; j++) {
+                        if (i == firstCoordinates - 1 && j == twoCoordinates - 1 && array[i][j] == ' ') {
+                            moveX = false;
+                            array[firstCoordinates - 1][twoCoordinates - 1] = 'X';
+                            System.out.print(array[firstCoordinates - 1][twoCoordinates - 1] + " ");
+                            continue;
+                        }
+                        System.out.print(array[i][j] + " ");
+                    }
+                    System.out.println("|");
                 }
-                else if (array[i][j - 1] < array[i][j]) {
-                    t = 1;
-                }
+                System.out.print(space);
             }
-            if (row == i + 1) {
+            if (array[firstCoordinates - 1][twoCoordinates - 1] == ' ' && moveO) {
+                System.out.print(space);
+                for (int i = 0; i < array.length; i++) {
+                    System.out.print("| ");
+                    for (int j = 0; j < array[i].length; j++) {
+                        if (i == firstCoordinates - 1 && j == twoCoordinates - 1 && array[i][j] == ' ') {
+                            moveX = true;
+                            array[firstCoordinates - 1][twoCoordinates - 1] = 'O';
+                            System.out.print(array[firstCoordinates - 1][twoCoordinates - 1] + " ");
+                            continue;
+                        }
+                        System.out.print(array[i][j] + " ");
+                    }
+                    System.out.println("|");
+                }
+                System.out.print(space);
+            }
+            String endGame = theEndInput(array);
+            if (endGame.equals("X wins") || endGame.equals("O wins")) {
+                System.out.print(endGame);
                 break;
             }
-        }
-        return row;
-    }
-    //
-    public void testMain(){
-        int result = 0;
-        Scanner sc = new Scanner(System.in);
-        int row = sc.nextInt();
-        int column = sc.nextInt();
-        int[][]array = new int[row][column];
-        for (int i = 0; i < array.length ; i++) {
-            for (int j = 0; j < array[i].length ; j++) {
-                array[i][j] = sc.nextInt();
-            }
-        }
-        int number = sc.nextInt();
-        for (int i = 0; i < array.length; i++) {
-            int t = 1;
-            for (int j = 1; j < array[i].length; j++) {
-                if (array[i][j - 1] + array[i][j] == 0) {
-                    t++;
-                }
-                if(t >= number){
-                    result = i + 1;
-                }
-                else if (array[i][j - 1] < array[i][j]) {
-                    t = 1;
-                }
-            }
-            if (result == i + 1) {
+            countGame++;
+            if (countGame == 9) {
+                System.out.print("Draw");
                 break;
             }
-        }
-        System.out.print(result);
-    }
-    //price ticket
-    public void testMain_1(){
-        Scanner sc = new Scanner(System.in);
-        int result = 0;
-        System.out.println("Enter the number of row:");
-        int row = sc.nextInt();
-        System.out.println("Enter the number of seats in each row:");
-        int seat = sc.nextInt();
-        System.out.println("Cinema:");
-        for (int i = 1; i <= seat; i++) {
-            if(i == 1){
-                System.out.print("  ");
-            }
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        for (int i = 1; i <=row; i++) {
-            System.out.print(i);
-            for (int j = 1; j <=seat; j++) {
-                System.out.print(" S");
-            }
-            System.out.println();
-        }
-        System.out.println("Enter a row number:");
-        int numberRowForPrice = sc.nextInt();
-        System.out.println("Enter a seat number in that row:");
-        int numberSeatForPrice = sc.nextInt();
-        if(row * seat <= 60 || numberRowForPrice <= 4){
-            System.out.print("Ticket price:" + "$" + "10\n");
-        }
-        else System.out.print("Ticket price:" + "$" + "8\n");
-        System.out.println("Cinema:");
-        for (int i = 1; i <= seat; i++) {
-            if(i == 1){
-                System.out.print("  ");
-            }
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        for (int i = 1; i <=row; i++) {
-            System.out.print(i);
-            for (int j = 1; j <=seat; j++) {
-                if(i == numberRowForPrice && j == numberSeatForPrice){
-                    System.out.print(" B");
-                    continue;
-                }
-                System.out.print(" S");
-            }
-            System.out.println();
+            System.out.print("Enter the coordinates: ");
+            int[]arr = Main.scannerInput();
+            firstCoordinates = arr[0];
+            twoCoordinates = arr[1];
         }
     }
+
+    public static String theEndInput(char[][] array) {
+        final char X = 'X';
+        final char O = 'O';
+        int count = 0;
+        char[] ch = new char[9];
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                ch[count++] = array[i][j];
+            }
+        }
+        String answer = "";
+        if ((ch[0] == X && ch[1] == X && ch[2] == X) || (ch[3] == X && ch[4] == X && ch[5] == X) || (ch[6] == X && ch[7] == X && ch[8] == X)) {
+            answer = "X wins";
+        }
+        if ((ch[0] == X && ch[3] == X && ch[6] == X) || (ch[1] == X && ch[4] == X && ch[7] == X) || (ch[2] == X && ch[5] == X && ch[8] == X)) {
+            answer = "X wins";
+        }
+        if ((ch[0] == X && ch[4] == X && ch[8] == X) || (ch[2] == X && ch[4] == X && ch[6] == X)) {
+            answer = "X wins";
+        }
+
+        if ((ch[0] == O && ch[1] == O && ch[2] == O) || (ch[3] == O && ch[4] == O && ch[5] == O) || (ch[6] == O && ch[7] == O && ch[8] == O)) {
+            answer = "O wins";
+        }
+        if ((ch[0] == O && ch[3] == O && ch[6] == O) || (ch[1] == O && ch[4] == O && ch[7] == O) || (ch[2] == O && ch[5] == O && ch[8] == O)) {
+            answer = "O wins";
+        }
+        if ((ch[0] == O && ch[4] == O && ch[8] == O) || (ch[2] == O && ch[4] == O && ch[6] == O)) {
+            answer = "O wins";
+        }
+        return answer;
     }
+}
