@@ -2,7 +2,7 @@ package com.company;
 import java.util.Scanner;
 
 public class Main {
-    public static int[] scannerInput() {
+        public static int[] scannerInput() {
         int[] arr = new int[2];
         Scanner sc = new Scanner(System.in);
         try {
@@ -29,7 +29,10 @@ public class Main {
         int[]arr = scannerInput();
         Academy.getCoordinates(str, arr[0], arr[1], true, true);
     }
+
 }
+
+
 
 
 
