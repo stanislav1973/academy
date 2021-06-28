@@ -17,7 +17,7 @@ public class AddShips {
                         array[startOfFirstCoordinates][startTwo] = "O";
                     startTwo++;
                 }
-                if(startTwo == j && endTwo == j && startOfFirstCoordinates <= endOfTwoCoordinates){
+                if(startTwo == j && endTwo == j && startOfFirstCoordinates <= endOfFirstCoordinates){
                     array[startOfFirstCoordinates][endTwo] = "O";
                     startOfFirstCoordinates++;
                 }
