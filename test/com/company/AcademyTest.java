@@ -8,14 +8,19 @@ import java.io.File;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AcademyTest {
-//    @Test
-//    void testMain(){
-//    boolean b = Main.areSiblings(new File("dir/file1.txt"),new File("dir/file2.txt"));
-//    assertTrue(b);
-//}
-//    @Test
-//    void testMain1(){
-//        boolean b = Main.areSiblings(new File("dir/file1.txt"),new File("dir/file2.txt"));
-//        assertFalse(b);
-//    }
+    @Test
+    void testTest(){
+   String in = AddShips.test("f1");
+   assertEquals("f",in);
+}
+    @Test
+    void testTest1(){
+        int in = AddShips.test1("f10");
+        assertEquals(10,in);
+    }
+    @Test
+    void testTest2(){
+        int in = AddShips.test1("f1");
+        assertEquals(1,in);
+    }
 }

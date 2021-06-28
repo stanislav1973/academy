@@ -26,4 +26,10 @@ public class AddShips {
             System.out.println();
         }
     }
+    public static String test(String s){
+        return s.substring(0,1);
+    }
+    public static int test1(String s){
+        return Integer.parseInt(s.substring(1));
+    }
 }
