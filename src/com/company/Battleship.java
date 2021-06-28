@@ -20,7 +20,7 @@ class Battleship {
         }
         return charArray;
     }
-    static void inputFieldByConsole(){
+    static void inputFieldOnConsole(){
         String[][] arr = Battleship.getArray();
         char[] alphabet = Battleship.verticalMarkup();
         Battleship.HorizontalMarkup();
@@ -31,5 +31,34 @@ class Battleship {
             }
             System.out.println();
         }
+    }
+    static int transformationStartFirstCoordinates(String startFirst){
+        int i;
+        int k = 0;
+        char j = startFirst.charAt(0);
+        char[] h = verticalMarkup();
+        for (i = 0; i < h.length; i++) {
+            if(h[i] == j){
+                k = i;
+            }
+        }
+        return k;
+    }
+    static int transformationStartTwoCoordinates(String startTwo){
+        return Integer.parseInt(startTwo);
+    }
+    static int transformationEndFirstCoordinates(String endFirst){
+        int k = 0;
+        char j = endFirst.charAt(0);
+        char[] h = verticalMarkup();
+        for (int i = 0; i < h.length; i++) {
+            if(h[i] == j){
+                k = i;
+            }
+        }
+        return k;
+    }
+    static int transformationEndTwoCoordinates(String twoEnd){
+        return Integer.parseInt(twoEnd);
     }
 }
