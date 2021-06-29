@@ -10,12 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class AcademyTest {
     @Test
     void testTest(){
-   String in = AddShips.test("f1");
-   assertEquals("f",in);
+   String in = AddShips.test("f100hlkjh");
+   assertEquals("j",in);
 }
     @Test
     void testTest1(){
-        int in = AddShips.test1("f10");
+        int in = AddShips.test1("f101h10");
         assertEquals(10,in);
     }
     @Test

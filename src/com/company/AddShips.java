@@ -1,9 +1,10 @@
 package com.company;
 
 public class AddShips {
-    public static void inputData(int i) {
-        System.out.print("Enter the coordinates of the Aircraft Carrier (" + i + " cells):\n");
+    public static void inputText(int i) {
+            System.out.print("Enter the coordinates of the Aircraft Carrier (" + i + " cells):\n");
     }
+
 
     public static void addShipsOnField(short startOfFirstCoordinates, short startOfTwoCoordinates, short endOfFirstCoordinates, short endOfTwoCoordinates,String[][]array) {
         char[] alphabet = Battleship.verticalMarkup();
@@ -27,9 +28,9 @@ public class AddShips {
         }
     }
     public static String test(String s){
-        return s.substring(0,1);
+        return s.substring(7);
     }
     public static int test1(String s){
-        return Integer.parseInt(s.substring(1));
+        return Integer.parseInt(s.substring(5));
     }
 }
