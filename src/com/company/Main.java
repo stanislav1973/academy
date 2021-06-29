@@ -3,7 +3,7 @@ package com.company;
 import java.util.Scanner;
 
 public class Main {
-static int numberShip = 5;
+static int cellsShip = 5;
     public static void inputCoordinates(){
         int count = 5;
         String[][]arr = Battleship.getArray();
@@ -26,7 +26,7 @@ static int numberShip = 5;
             int sum = Math.abs(intStart - intEnd) + 1;
             int sum1 = Math.abs(firstStart - endStart) + 1;
 
-            if((sum != numberShip && firstStart == endStart) || sum1 != numberShip && intStart == intEnd){
+            if((sum != cellsShip && firstStart == endStart) || (sum1 != cellsShip && intStart == intEnd)) {
                 System.out.print("Error! Wrong length of the Submarine! Try again:\n");
                 continue;
             }
@@ -35,17 +35,17 @@ static int numberShip = 5;
             if(count < 1){
                 break;
             }
-            numberShip--;
+            cellsShip--;
             if(count == 2) {
-                numberShip++;
+                cellsShip++;
             }
-            AddShips.inputText(numberShip);
+            AddShips.inputText(cellsShip);
 
         }
     }
     public static void main(String[] args) {
         Battleship.inputFieldOnConsole();
-        AddShips.inputText(numberShip);
+        AddShips.inputText(cellsShip);
        inputCoordinates();
     }
 }
