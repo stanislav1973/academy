@@ -26,7 +26,7 @@ static int numberShip = 5;
             int sum = Math.abs(intStart - intEnd) + 1;
             int sum1 = Math.abs(firstStart - endStart) + 1;
 
-            if(sum != numberShip || sum1 != numberShip){
+            if((sum != numberShip && firstStart == endStart) || sum1 != numberShip && intStart == intEnd){
                 System.out.print("Error! Wrong length of the Submarine! Try again:\n");
                 continue;
             }
