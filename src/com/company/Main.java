@@ -24,8 +24,9 @@ static int numberShip = 5;
             short endStart = (short) Battleship.transformationCoordinates(end);
 
             int sum = Math.abs(intStart - intEnd) + 1;
+            int sum1 = Math.abs(firstStart - endStart) + 1;
 
-            if(sum != count){
+            if(sum != numberShip || sum1 != numberShip){
                 System.out.print("Error! Wrong length of the Submarine! Try again:\n");
                 continue;
             }
@@ -33,6 +34,10 @@ static int numberShip = 5;
             AddShips.addShipsOnField(firstStart, (short) intStart , endStart, (short) intEnd,arr);
             if(count < 1){
                 break;
+            }
+            numberShip--;
+            if(count == 2) {
+                numberShip++;
             }
             AddShips.inputText(numberShip);
 

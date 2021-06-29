@@ -23,4 +23,10 @@ class AcademyTest {
         int in = AddShips.test1("f1");
         assertEquals(1,in);
     }
+    @Test
+    void testTest3(){
+        int in = AddShips.test2(10 ,20);
+        assertEquals(10,in);
+    }
+
 }

@@ -33,4 +33,8 @@ public class AddShips {
     public static int test1(String s){
         return Integer.parseInt(s.substring(5));
     }
+    public static short test2(int i, int k){
+        return (short) Math.abs(i - k);
+    }
+
 }
