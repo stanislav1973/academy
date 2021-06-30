@@ -35,15 +35,8 @@ class AcademyTest {
     }
     @Test
     void testArray(){
-        String[][] array = new String[10][10];
-
-        String[][]arrayTest = new String[10][10];
-        for (int i = 0; i < arrayTest.length; i++) {
-            for (int j = 0; j < arrayTest[i].length; j++) {
-                arrayTest[i][j] = "~";
-            }
-        }
-        String [][] arr = AddShips.testArray(array);
-        assertArrayEquals(arrayTest,arr);
+        boolean [][] array = new boolean[10][10];
+        String arr = AddShips.testArray(array,0,0,0,4);
+        assertEquals("No",arr);
     }
 }

@@ -24,13 +24,7 @@ class Battleship {
         String[][] arr = Battleship.getArray();
         char[] alphabet = Battleship.verticalMarkup();
         Battleship.HorizontalMarkup();
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(alphabet[i]);
-            for (int j = 0; j < arr[i].length; j++) {
-                System.out.print(" " + arr[i][j]);
-            }
-            System.out.println();
-        }
+        AddShips.showArray(arr, alphabet);
     }
     static int transformationCoordinates(String startFirst){
         int i;
@@ -43,5 +37,12 @@ class Battleship {
             }
         }
         return k;
+    }
+    static boolean[][] checkArrayBoolean(){
+        boolean[][] arrBoolean = new boolean[10][10];
+        for(boolean[]b : arrBoolean){
+            Arrays.fill(b,true);
+        }
+        return arrBoolean;
     }
 }

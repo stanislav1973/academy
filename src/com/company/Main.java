@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -7,6 +8,7 @@ static int cellsShip = 5;
     public static void inputCoordinates(){
         int count = 5;
         String[][]arr = Battleship.getArray();
+        boolean[][] arrBoolean = Battleship.checkArrayBoolean();
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNext()) {
@@ -23,15 +25,30 @@ static int cellsShip = 5;
             short firstStart = (short) Battleship.transformationCoordinates(start);
             short endStart = (short) Battleship.transformationCoordinates(end);
 
+
             int sum = Math.abs(intStart - intEnd) + 1;
             int sum1 = Math.abs(firstStart - endStart) + 1;
 
-            if((sum != cellsShip && firstStart == endStart) || (sum1 != cellsShip && intStart == intEnd)) {
-                System.out.print("Error! Wrong length of the Submarine! Try again:\n");
+            if(!arrBoolean[firstStart][intStart - 1] && !arrBoolean[endStart][intEnd - 1]){
+                System.out.print("Error");
+                continue;
+            }
+
+            if(firstStart != endStart && intStart != intEnd){
+                System.out.print("Error! Wrong ship location! Try again:\n");
+                continue;
+            }
+
+            if((sum != cellsShip ) && (sum1 != cellsShip)) {
+                AddShips.inputText1(cellsShip);
                 continue;
             }
             count--;
             AddShips.addShipsOnField(firstStart, (short) intStart , endStart, (short) intEnd,arr);
+
+            arrBoolean[firstStart][intStart - 1] = false;
+            arrBoolean[endStart][intEnd -1] = false;
+
             if(count < 1){
                 break;
             }
@@ -40,7 +57,6 @@ static int cellsShip = 5;
                 cellsShip++;
             }
             AddShips.inputText(cellsShip);
-
         }
     }
     public static void main(String[] args) {
