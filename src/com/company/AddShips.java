@@ -72,15 +72,19 @@ public class AddShips {
         return (short) Math.abs(i - k);
     }
 
-    public static String testArray(boolean[][] array, int i0, int i1, int i2, int i3) {
-
+    public static String testArray(boolean[][] array, int i0, int j1, int i2, int j3) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                if(!array[i0][i1] || !array[i2][i3]){
-                    return "No";
+                array[i][j] = i < i0 - 1 || i > i2 + 1 || j < j1 - 1 || j > j3 + 1;
+            }
+        }
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if(!array[0][4]){
+                    return "false";
                 }
             }
         }
-        return "Yes";
+        return "true";
     }
 }
