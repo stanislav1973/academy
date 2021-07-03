@@ -75,12 +75,23 @@ public class AddShips {
     public static String testArray(boolean[][] array, int i0, int j1, int i2, int j3) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
+                if(j1 > j3){
+                    int k = j1;
+                    j1 = j3;
+                    j3 = k;
+                }
+                 if (i0 > i2){
+                    int t = i0;
+                    i0 = i2;
+                    i2 = t;
+                }
                 array[i][j] = i < i0 - 1 || i > i2 + 1 || j < j1 - 1 || j > j3 + 1;
+
             }
         }
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                if(!array[0][4]){
+                if(!array[1][4]){
                     return "false";
                 }
             }
