@@ -8,7 +8,7 @@ static int cellsShip = 5;
     public static void inputCoordinates(){
         int count = 5;
         String[][]arr = Battleship.getArray();
-        boolean[][] arrBoolean = Battleship.checkArrayBoolean();
+        boolean[][] arrBoolean = new boolean[10][10];
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNext()) {
@@ -25,7 +25,11 @@ static int cellsShip = 5;
             short firstStart = (short) Battleship.transformationCoordinates(start);
             short endStart = (short) Battleship.transformationCoordinates(end);
 
-
+            String arrayBoolean = AddShips.testArray(arrBoolean,firstStart,intStart,endStart,intEnd);
+            if(arrayBoolean.equals("false") && count != 5){
+                System.out.print("Error");
+                continue;
+            }
             int sum = Math.abs(intStart - intEnd) + 1;
             int sum1 = Math.abs(firstStart - endStart) + 1;
 
