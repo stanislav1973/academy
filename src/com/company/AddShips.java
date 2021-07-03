@@ -1,8 +1,7 @@
 package com.company;
 
-import java.util.Arrays;
-
 public class AddShips {
+
     public static void inputText(int i) {
         String[] nameShip = {"Aircraft Carrier ", "Battleship ", "Submarine ", "Cruiser", "Destroyer"};
         for (int j = 5; j >= 0; j--) {
@@ -23,27 +22,26 @@ public class AddShips {
     public static void addShipsOnField(short startOfFirstCoordinates, short startOfTwoCoordinates, short endOfFirstCoordinates, short endOfTwoCoordinates, String[][] array) {
         char[] al = Battleship.verticalMarkup();
         Battleship.HorizontalMarkup();
-        short startTwo = (short) (startOfTwoCoordinates - 1);
-        short endTwo = (short) (endOfTwoCoordinates - 1);
-        int countHorizontales = startTwo;
-        int countHorizontales_1 = startTwo;
+
+        int countHorizontales = startOfTwoCoordinates;
+        int countHorizontales_1 = startOfTwoCoordinates;
         int countVertical = startOfFirstCoordinates;
         int countVertical_1 = startOfFirstCoordinates;
 
-        while (countHorizontales <= endTwo) {
+        while (countHorizontales <= endOfTwoCoordinates) {
             array[startOfFirstCoordinates][countHorizontales] = "O";
             countHorizontales++;
         }
-        while (countHorizontales_1 >= endTwo) {
+        while (countHorizontales_1 >= endOfTwoCoordinates) {
             array[endOfFirstCoordinates][countHorizontales_1] = "O";
             countHorizontales_1--;
         }
         while (countVertical <= endOfFirstCoordinates) {
-            array[countVertical][startTwo] = "O";
+            array[countVertical][startOfTwoCoordinates] = "O";
             countVertical++;
         }
         while (countVertical_1 >= endOfFirstCoordinates) {
-            array[countVertical_1][startTwo] = "O";
+            array[countVertical_1][startOfTwoCoordinates] = "O";
             countVertical_1--;
         }
         showArray(array, al);
@@ -69,32 +67,27 @@ public class AddShips {
     }
 
     public static short test2(int i, int k) {
-        return (short) Math.abs(i - k);
+        return (short) ((short) Math.abs(i - k) + 1);
     }
 
-    public static String testArray(int i0, int j1, int i2, int j3,boolean[][] array) {
+    public static void checkArray(int i0, int j1, int i2, int j3,boolean[][] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                if (j1 > j3) {
+                if(j1 > j3){
                     int k = j1;
                     j1 = j3;
                     j3 = k;
                 }
-                if (i0 > i2) {
+                 if (i0 > i2){
                     int t = i0;
                     i0 = i2;
                     i2 = t;
                 }
+                if(!array[i][j]){
+                    continue;
+                }
                 array[i][j] = i < i0 - 1 || i > i2 + 1 || j < j1 - 1 || j > j3 + 1;
             }
         }
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                if(!array[1][4]){
-                    return "false";
-                }
-            }
-        }
-        return "true";
     }
 }
