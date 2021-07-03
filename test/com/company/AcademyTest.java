@@ -36,7 +36,7 @@ class AcademyTest {
     @Test
     void testArray(){
         boolean [][] array = new boolean[10][10];
-        String arr = AddShips.testArray(array,0,4,0,1);
+        String arr = AddShips.testArray(0,4,0,1,array);
         assertEquals("false",arr);
     }
 }

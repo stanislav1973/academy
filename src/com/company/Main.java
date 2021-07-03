@@ -8,7 +8,7 @@ static int cellsShip = 5;
     public static void inputCoordinates(){
         int count = 5;
         String[][]arr = Battleship.getArray();
-        boolean[][] arrBoolean = new boolean[10][10];
+        boolean[][] arrBoolean = Battleship.checkArrayBoolean();
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNext()) {
@@ -25,7 +25,8 @@ static int cellsShip = 5;
             short firstStart = (short) Battleship.transformationCoordinates(start);
             short endStart = (short) Battleship.transformationCoordinates(end);
 
-            String arrayBoolean = AddShips.testArray(arrBoolean,firstStart,intStart,endStart,intEnd);
+           String arrayBoolean = AddShips.testArray(firstStart,intStart,endStart,intEnd,arrBoolean);
+
             if(arrayBoolean.equals("false") && count != 5){
                 System.out.print("Error");
                 continue;
@@ -33,10 +34,6 @@ static int cellsShip = 5;
             int sum = Math.abs(intStart - intEnd) + 1;
             int sum1 = Math.abs(firstStart - endStart) + 1;
 
-            if(!arrBoolean[firstStart][intStart - 1] && !arrBoolean[endStart][intEnd - 1]){
-                System.out.print("Error");
-                continue;
-            }
 
             if(firstStart != endStart && intStart != intEnd){
                 System.out.print("Error! Wrong ship location! Try again:\n");
