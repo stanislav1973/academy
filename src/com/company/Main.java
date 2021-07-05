@@ -44,7 +44,7 @@ static int cellsShip = 5;
             }
 
             if((sum != cellsShip ) && (sum1 != cellsShip)) {
-                AddShips.inputText1(cellsShip);
+                AddShips.inputText1(count);
                 continue;
             }
             count--;

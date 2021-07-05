@@ -5,39 +5,86 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AcademyTest {
-    @Ignore
     //@Test
     void testTest(){
    String in = AddShips.test("f100hlkjh");
    assertEquals("j",in);
 }
-    @Ignore
+
     //@Test
     void testTest1(){
         int in = AddShips.test1("f101h10");
         assertEquals(10,in);
     }
     //@Test
-    @Ignore
     void testTest2(){
         int in = AddShips.test1("f1");
         assertEquals(1,in);
     }
-    @Test
-    //@Ignore
+    //@Test
     void testTest3(){
         int in = AddShips.test2(0 ,9);
         assertEquals(10,in);
     }
     //@Test
-    @Ignore
     void testArray(){
         boolean [][] array = new boolean[10][10];
         //String arr = AddShips.testArray(0,4,0,1,array);
         //assertEquals("false",arr);
+    }
+    @Test
+    void testInputTextInt2(){
+        int count = 1; // two pipes
+        int lengthShipNumber = TestsAcademy.lengthShips(0,0, 0 ,1);
+        int s = TestsAcademy.testInputTextInt(lengthShipNumber);
+        assertEquals(2, s);
+        String s1 = TestsAcademy.testInputTextString(s + 2, count);
+        assertEquals("Destroyer", s1);
+    }
+    @Test
+    void testInputTextInt3_1(){// three tube
+        int count = 2;
+        int lengthShipNumber = TestsAcademy.lengthShips(0,0, 0 ,2);
+        int s = TestsAcademy.testInputTextInt(lengthShipNumber);
+        assertEquals(3, lengthShipNumber);
+        String s1 = TestsAcademy.testInputTextString(s , count);
+        assertEquals("Cruiser", s1);
+    }
+    @Test
+    void testInputTextInt3(){ // three pipes
+        int count = 3;
+        int lengthShipNumber = TestsAcademy.lengthShips(0,0, 0 ,2);
+        int s = TestsAcademy.testInputTextInt(lengthShipNumber);
+        assertEquals(3, lengthShipNumber);
+        String s1 = TestsAcademy.testInputTextString(s - 1, count);
+        assertEquals("Submarines", s1);
+    }
+    @Test
+    void testInputTextInt4(){ // four pipes
+        int count = 4;
+        int lengthShipNumber = TestsAcademy.lengthShips(0,0, 0 ,3);
+        int s = TestsAcademy.testInputTextInt(lengthShipNumber);
+        assertEquals(4, s);
+        String s1 = TestsAcademy.testInputTextString(s - 3, count);
+        assertEquals("Battleship", s1);
+    }
+    @Test
+    void testInputTextInt5(){
+        int count = 5; //fife pipes
+        int lengthShipNumber = TestsAcademy.lengthShips(0,0, 0 ,4);
+        int s = TestsAcademy.testInputTextInt(lengthShipNumber);
+        assertEquals(5, s);
+        String s1 = TestsAcademy.testInputTextString(s - 5, count);
+        assertEquals("Aircraft Carrier", s1);
+    }
+    @Test
+    void testLengthShips(){
+        int i = TestsAcademy.lengthShips(0, 0, 0, 1);
+        assertEquals(2,i);
     }
 }

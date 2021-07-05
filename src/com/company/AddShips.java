@@ -3,7 +3,8 @@ package com.company;
 public class AddShips {
 
     public static void inputText(int i) {
-        String[] nameShip = {"Aircraft Carrier ", "Battleship ", "Submarine ", "Cruiser", "Destroyer"};
+         String[] nameShip = {"Aircraft Carrier ", "Battleship ", "Submarine ", "Cruiser", "Destroyer"};
+         int k = 2;
         for (int j = 5; j >= 0; j--) {
             if (i == j) {
                 System.out.print("Enter the coordinates of the " + nameShip[nameShip.length - j] + " (" + i + " cells):\n");
