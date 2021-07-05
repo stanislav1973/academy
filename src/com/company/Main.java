@@ -25,8 +25,10 @@ static int cellsShip = 5;
             short endStart = (short) Battleship.transformationCoordinates(end);
 
 
-            int sum = Math.abs(intStart - intEnd) + 1;
-            int sum1 = Math.abs(firstStart - endStart) + 1;
+            int sum = Math.abs(intStart - intEnd);
+            //int lengthShip = TestsAcademy.testInputTextInt(sum);
+            int sum1 = Math.abs(firstStart - endStart);
+            //int lengthShip_1 = TestsAcademy.testInputTextInt(sum1);
 
 
             if(firstStart != endStart && intStart != intEnd){
@@ -43,24 +45,49 @@ static int cellsShip = 5;
                 continue;
             }
 
-            if((sum != cellsShip ) && (sum1 != cellsShip)) {
-                AddShips.inputText1(count);
+            if(sum != count - 1 && count == 5 && sum1 != count - 1) {
+                System.out.print("Error! Wrong length of the Aircraft Carrier! Try again:\n");
                 continue;
             }
-            count--;
+            else if (sum != count - 1 && count == 4 && sum1 != count - 1){
+                System.out.print("Error! Wrong length of the Battleship! Try again:\n");
+                continue;
+            }
+            else if (sum != count - 1 && count == 3 && sum1 != count - 1){
+                System.out.print("Error! Wrong length of the Submarines ! Try again:\n");
+                continue;
+            }
+            else if (sum != count  && count == 2 && sum1 != count){
+                System.out.print("Error! Wrong length of the Cruiser! Try again:\n");
+                continue;
+            }
+            else if (count == 1 && sum != count && sum1 != count){
+                System.out.print("Error! Wrong length of the Destroyer! Try again:\n");
+                continue;
+            }
+
             AddShips.addShipsOnField(firstStart, (short) intStart , endStart, (short) intEnd,arr);
 
+            if(count == 5){
+                System.out.print("Enter the coordinates of the Battleship (4 cells):\n");
+            }
+            else if (count == 4){
+                System.out.print("Enter the coordinates of the Submarines (3 cells):\n");
+            }
+            else if (count == 3){
+                System.out.print("Enter the coordinates of the Cruiser (3 cells):\n");
+            }
+            else if (count == 2){
+                System.out.print("Enter the coordinates of the Destroyer (2 cells):\n");
+            }
+            count--;
             if(count < 1){
                 break;
             }
-            cellsShip--;
-            if(count == 2){
-                cellsShip++;
-            }
-            AddShips.inputText(cellsShip);
-            AddShips.checkArray(firstStart,intStart,endStart,intEnd,arrBoolean);
+            AddShips.checkArray(firstStart, intStart, endStart, intEnd, arrBoolean);
         }
     }
+
     public static void main(String[] args) {
         Battleship.inputFieldOnConsole();
         AddShips.inputText(cellsShip);

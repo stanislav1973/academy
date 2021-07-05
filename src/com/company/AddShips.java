@@ -3,22 +3,9 @@ package com.company;
 public class AddShips {
 
     public static void inputText(int i) {
-         String[] nameShip = {"Aircraft Carrier ", "Battleship ", "Submarine ", "Cruiser", "Destroyer"};
-         int k = 2;
-        for (int j = 5; j >= 0; j--) {
-            if (i == j) {
-                System.out.print("Enter the coordinates of the " + nameShip[nameShip.length - j] + " (" + i + " cells):\n");
+         String[] nameShip = {"Aircraft Carrier"};
+         System.out.print("Enter the coordinates of the " + nameShip[0] + " (" + i + " cells):\n");
             }
-        }
-    }
-    public static void inputText1(int i) {
-        String[] nameShip = {"Aircraft Carrier ", "Battleship ", "Submarine ", "Cruiser", "Destroyer"};
-        for (int j = 5; j >= 0; j--) {
-            if (i == j) {
-                System.out.print("Error! Wrong length of the " + nameShip[nameShip.length - j] + "! Try again:\n");
-            }
-        }
-    }
 
     public static void addShipsOnField(short startOfFirstCoordinates, short startOfTwoCoordinates, short endOfFirstCoordinates, short endOfTwoCoordinates, String[][] array) {
         char[] al = Battleship.verticalMarkup();
