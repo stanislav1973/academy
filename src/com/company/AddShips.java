@@ -45,19 +45,6 @@ public class AddShips {
         }
     }
 
-    // Tests for a project
-    public static String test(String s) {
-        return s.substring(7);
-    }
-
-    public static int test1(String s) {
-        return Integer.parseInt(s.substring(5));
-    }
-
-    public static short test2(int i, int k) {
-        return (short) ((short) Math.abs(i - k) + 1);
-    }
-
     public static void checkArray(int i0, int j1, int i2, int j3,boolean[][] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {

@@ -38,7 +38,7 @@ class Battleship {
         }
         return k;
     }
-    static boolean[][] checkArrayBoolean(){
+    static boolean[][] addArrayBoolean(){
         boolean[][] arrBoolean = new boolean[10][10];
         for(boolean[]b : arrBoolean){
             Arrays.fill(b,true);

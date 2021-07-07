@@ -1,35 +1,29 @@
 package com.company;
-
-import java.util.Arrays;
 import java.util.Scanner;
-
 public class Main {
 static int cellsShip = 5;
-
-    public static void inputCoordinates(){
+    public String scannerInput(){
+        Scanner scanner = new Scanner(System.in);
+        return scanner.next();
+    }
+    public void inputCoordinates(){
         int count = 5;
         String[][]arr = Battleship.getArray();
-        boolean[][] arrBoolean = Battleship.checkArrayBoolean();
-        Scanner scanner = new Scanner(System.in);
-
-        while (scanner.hasNext()) {
-            String startCoordinates = scanner.next();
-            String endCoordinates1 = scanner.next();
+        boolean[][] arrBoolean = Battleship.addArrayBoolean();
+        while (count > 0) {
+            String startCoordinates = scannerInput();
+            String endCoordinates1 = scannerInput();
             String  start = startCoordinates.substring(0,1);
-            int intStart = Integer.parseInt(startCoordinates.substring(1)) - 1;
-
             String end = endCoordinates1.substring(0,1);
+
+            int intStart = Integer.parseInt(startCoordinates.substring(1)) - 1;
             int intEnd = Integer.parseInt(endCoordinates1.substring(1)) - 1;
 
             short firstStart = (short) Battleship.transformationCoordinates(start);
             short endStart = (short) Battleship.transformationCoordinates(end);
 
-
             int sum = Math.abs(intStart - intEnd);
-            //int lengthShip = TestsAcademy.testInputTextInt(sum);
             int sum1 = Math.abs(firstStart - endStart);
-            //int lengthShip_1 = TestsAcademy.testInputTextInt(sum1);
-
 
             if(firstStart != endStart && intStart != intEnd){
                 System.out.print("Error! Wrong ship location! Try again:\n");
@@ -82,7 +76,11 @@ static int cellsShip = 5;
             }
             count--;
             if(count < 1){
-                break;
+                    System.out.printf("%s\n", "The game starts!");
+                    char[] al = Battleship.verticalMarkup();
+                    AddShips.showArray(arr, al);
+                    System.out.printf("%s\n", "Take a shot!");
+                        new Shot().getShot(arr);
             }
             AddShips.checkArray(firstStart, intStart, endStart, intEnd, arrBoolean);
         }
@@ -91,7 +89,7 @@ static int cellsShip = 5;
     public static void main(String[] args) {
         Battleship.inputFieldOnConsole();
         AddShips.inputText(cellsShip);
-       inputCoordinates();
+       new Main().inputCoordinates();
     }
 }
 
