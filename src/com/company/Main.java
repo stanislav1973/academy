@@ -1,4 +1,5 @@
 package com.company;
+import java.util.Arrays;
 import java.util.Scanner;
 public class Main {
 static int cellsShip = 5;
@@ -7,6 +8,7 @@ static int cellsShip = 5;
         return scanner.next();
     }
     public void inputCoordinates(){
+        String[][]newArray = new String[10][10];
         Scanner scanner = new Scanner(System.in);
         int count = 5;
         String[][]arr = Battleship.getArray();
@@ -78,8 +80,7 @@ static int cellsShip = 5;
             count--;
             if(count < 1){
                     System.out.printf("%s\n", "The game starts!");
-                    char[] al = Battleship.verticalMarkup();
-                    AddShips.showArray(arr, al);
+                    AddShips.getEmptyArray();
                     System.out.printf("%s\n", "Take a shot!");
                         new Shot().getShot(arr);
             }
@@ -91,6 +92,7 @@ static int cellsShip = 5;
         Battleship.inputFieldOnConsole();
         AddShips.inputText(cellsShip);
        new Main().inputCoordinates();
+
     }
 }
 
