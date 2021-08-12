@@ -7,12 +7,13 @@ static int cellsShip = 5;
         return scanner.next();
     }
     public void inputCoordinates(){
+        Scanner scanner = new Scanner(System.in);
         int count = 5;
         String[][]arr = Battleship.getArray();
         boolean[][] arrBoolean = Battleship.addArrayBoolean();
         while (count > 0) {
-            String startCoordinates = scannerInput();
-            String endCoordinates1 = scannerInput();
+            String startCoordinates = scanner.next();
+            String endCoordinates1 = scanner.next();
             String  start = startCoordinates.substring(0,1);
             String end = endCoordinates1.substring(0,1);
 
