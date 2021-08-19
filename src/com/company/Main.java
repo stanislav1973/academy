@@ -1,3 +1,4 @@
+
 package com.company;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -8,22 +9,25 @@ static int cellsShip = 5;
         return scanner.next();
     }
     public void inputCoordinates(){
-        String[][]newArray = new String[10][10];
         Scanner scanner = new Scanner(System.in);
-        int count = 5;
+        int count = 5; // ship input counter
         String[][]arr = Battleship.getArray();
         boolean[][] arrBoolean = Battleship.addArrayBoolean();
+        String[][]arrayWithoutShips = Battleship.getArray();
         while (count > 0) {
+            // entering the first coordinate
             String startCoordinates = scanner.next();
+            // entering the two coordinate
             String endCoordinates1 = scanner.next();
+            // separate character from number
             String  start = startCoordinates.substring(0,1);
             String end = endCoordinates1.substring(0,1);
 
             int intStart = Integer.parseInt(startCoordinates.substring(1)) - 1;
             int intEnd = Integer.parseInt(endCoordinates1.substring(1)) - 1;
 
-            short firstStart = (short) Battleship.transformationCoordinates(start);
-            short endStart = (short) Battleship.transformationCoordinates(end);
+            int firstStart =  Battleship.transformationCoordinates(start);
+            int endStart =  Battleship.transformationCoordinates(end);
 
             int sum = Math.abs(intStart - intEnd);
             int sum1 = Math.abs(firstStart - endStart);
@@ -63,7 +67,7 @@ static int cellsShip = 5;
                 continue;
             }
 
-            AddShips.addShipsOnField(firstStart, (short) intStart , endStart, (short) intEnd,arr);
+            AddShips.addShipsOnField(firstStart, intStart , endStart, intEnd,arr);
 
             if(count == 5){
                 System.out.print("Enter the coordinates of the Battleship (4 cells):\n");
@@ -82,7 +86,7 @@ static int cellsShip = 5;
                     System.out.printf("%s\n", "The game starts!");
                     AddShips.getEmptyArray();
                     System.out.printf("%s\n", "Take a shot!");
-                        new Shot().getShot(arr);
+                        new Shot().getShot(arr,arrayWithoutShips);
             }
             AddShips.checkArray(firstStart, intStart, endStart, intEnd, arrBoolean);
         }
@@ -95,17 +99,4 @@ static int cellsShip = 5;
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 

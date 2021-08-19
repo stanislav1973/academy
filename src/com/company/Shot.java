@@ -1,12 +1,12 @@
 package com.company;
+
 public class Shot {
 
-    public void getShot(String[][] arrayWithShips) {
-        String[][]arrayWithoutShips = new String[10][10];
+    public void getShot(String[][] arrayWithShips, String[][] arrayWithoutShips) {
         char[] al = Battleship.verticalMarkup();
         int count = 0;
         boolean b = false;
-        while (count < 3) {
+        while (count < 17) {
             String line = new Main().scannerInput();
             String firstCoordinatesShot = line.substring(0, 1);
             char symbol = firstCoordinatesShot.charAt(0);
@@ -17,42 +17,32 @@ public class Shot {
                 System.out.printf("%s", "Error! You entered the wrong coordinates! Try again:\n");
                 continue;
             }
-            Battleship.HorizontalMarkup();
-            for (int i = 0; i < arrayWithoutShips.length; i++) {
-                System.out.print(al[i]);
-                for (int j = 0; j < arrayWithoutShips[i].length; j++) {
-                    arrayWithoutShips[i][j] = "~";
-                    if (arrayWithShips[firstCoordinates][twoCoordinates].equals("O")) {
-                        arrayWithoutShips[firstCoordinates][twoCoordinates] = "X";
-                        count = 2;
-                        b = true;
-                    } else if (arrayWithShips[firstCoordinates][twoCoordinates].equals("~")) {
-                        arrayWithoutShips[firstCoordinates][twoCoordinates] = "M";
-                        count = 2;
-                        b = false;
-                    }
-                    System.out.print(" " + arrayWithoutShips[i][j]);
-                }
-                System.out.println();
-            }
-            if(b){
-                System.out.print("You hit a ship!\n");
-            }
-            else System.out.print("You missed!\n");
-            count++;
+            if (arrayWithShips[firstCoordinates][twoCoordinates].equals("O")) {
+                arrayWithoutShips[firstCoordinates][twoCoordinates] = "X";
+                b = true;
+            } else if (arrayWithShips[firstCoordinates][twoCoordinates].equals("~")) {
+                arrayWithoutShips[firstCoordinates][twoCoordinates] = "M";
+                b = false;
 
-            Battleship.HorizontalMarkup();
-            for (int i = 0; i < arrayWithShips.length; i++) {
-                System.out.print(al[i]);
-                for (int j = 0; j < arrayWithShips[i].length; j++) {
-                    if (arrayWithShips[firstCoordinates][twoCoordinates].equals("O")) {
-                        arrayWithShips[firstCoordinates][twoCoordinates] = "X";
-                    } else if (arrayWithShips[firstCoordinates][twoCoordinates].equals("~")) {
-                        arrayWithShips[firstCoordinates][twoCoordinates] = "M";
-                    }
-                    System.out.print(" " + arrayWithShips[i][j]);
-                }
-                System.out.println();
+            }
+
+            if (b) {
+                System.out.print("You hit a ship! Try again:\n");
+                count++;
+            } else System.out.print("You missed! Try again:\n");
+
+//            for (int i = 0; i < arrayWithShips.length; i++) {
+//                for (int j = 0; j < arrayWithShips[i].length; j++) {
+//
+//                    if (arrayWithShips[firstCoordinates][twoCoordinates].equals("O")) {
+//                        arrayWithShips[firstCoordinates][twoCoordinates] = "X";
+//                    } else if (arrayWithShips[firstCoordinates][twoCoordinates].equals("~")) {
+//                        arrayWithShips[firstCoordinates][twoCoordinates] = "M";
+//                    }
+//                }
+//            }
+            if (count == 17) {
+                System.out.print("You sank the last ship. You won. Congratulations!");
             }
         }
     }
