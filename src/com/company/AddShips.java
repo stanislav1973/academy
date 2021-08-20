@@ -64,17 +64,5 @@ public class AddShips {
             }
         }
     }
-    public static void getEmptyArray(){
-        char[] al = Battleship.verticalMarkup();
-        String[][] array = new String[10][10];
-        Battleship.HorizontalMarkup();
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(al[i]);
-            for (int j = 0; j < array[i].length; j++) {
-                array[i][j] = "~";
-                System.out.print(" " + array[i][j]);
-            }
-            System.out.println();
-        }
-    }
+
 }

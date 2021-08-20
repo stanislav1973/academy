@@ -12,17 +12,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class AcademyTest {
     @Test
     void testLine(){
-        String[][]arr = new String[4][4];
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
-                if(i < 1 && j < 2){
-                    arr[i][j] = "X";
-                }
-                else arr[i][j] = "~";
-            }
-        }
-       String test = TestsAcademy.checkShipSunk();
-        assertEquals("YES",test);
+        String[][]arr = Battleship.getArray();
+        arr[0][0] = "O";
+        arr[1][0] = "O";
+        arr[2][0] = "O";
+        arr[3][0] = "O";
+
+       String[][] test = TestsAcademy.checkShipSunk("A1",arr);
+        System.out.print(Arrays.deepToString(arr));
+        assertArrayEquals(test,arr);
     }
 
 }
