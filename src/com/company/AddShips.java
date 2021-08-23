@@ -1,10 +1,8 @@
 package com.company;
 
+import com.company.inputships.InputShips;
+
 public class AddShips {
-    public static void inputText(int i) {
-         String[] nameShip = {"Aircraft Carrier"};
-         System.out.print("Enter the coordinates of the " + nameShip[0] + " (" + i + " cells):\n");
-            }
 
     public static void addShipsOnField(int startOfFirstCoordinates, int startOfTwoCoordinates, int endOfFirstCoordinates,int endOfTwoCoordinates, String[][] array) {
         char[] al = Battleship.verticalMarkup();

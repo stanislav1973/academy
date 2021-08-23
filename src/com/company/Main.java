@@ -2,7 +2,7 @@ package com.company;
 import java.util.Arrays;
 import java.util.Scanner;
 public class Main {
-    static int cellsShip = 5;
+    static int cellsShip = 0;
     public String scannerInput(){
         Scanner scanner = new Scanner(System.in);
         return scanner.next();
@@ -22,11 +22,11 @@ public class Main {
             String  start = startCoordinates.substring(0,1);
             String end = endCoordinates1.substring(0,1);
 
-            int intStart = Integer.parseInt(startCoordinates.substring(1)) - 1;
-            int intEnd = Integer.parseInt(endCoordinates1.substring(1)) - 1;
+            int intStart = Integer.parseInt(startCoordinates.substring(1)) - 1; // первая координата (int)
+            int intEnd = Integer.parseInt(endCoordinates1.substring(1)) - 1; // вторая координата (int)
 
-            int firstStart =  Battleship.transformationCoordinates(start);
-            int endStart =  Battleship.transformationCoordinates(end);
+            int firstStart =  Battleship.transformationCoordinates(start); // первая координата (char)
+            int endStart =  Battleship.transformationCoordinates(end); // вторая координата (char)
 
             int sum = Math.abs(intStart - intEnd);
             int sum1 = Math.abs(firstStart - endStart);
@@ -46,39 +46,44 @@ public class Main {
             }
 
             if(sum != count - 1 && count == 5 && sum1 != count - 1) {
-                System.out.print("Error! Wrong length of the Aircraft Carrier! Try again:\n");
+                Battleship.errorInputText(cellsShip);
+                //System.out.print("Error! Wrong length of the Aircraft Carrier! Try again:\n");
                 continue;
             }
             else if (sum != count - 1 && count == 4 && sum1 != count - 1){
-                System.out.print("Error! Wrong length of the Battleship! Try again:\n");
+                //System.out.print("Error! Wrong length of the Battleship! Try again:\n");
+                Battleship.errorInputText(cellsShip);
                 continue;
             }
             else if (sum != count - 1 && count == 3 && sum1 != count - 1){
-                System.out.print("Error! Wrong length of the Submarines ! Try again:\n");
+                Battleship.errorInputText(cellsShip);
+                //System.out.print("Error! Wrong length of the Submarines ! Try again:\n");
                 continue;
             }
             else if (sum != count  && count == 2 && sum1 != count){
-                System.out.print("Error! Wrong length of the Cruiser! Try again:\n");
+                Battleship.errorInputText(cellsShip);
+                //System.out.print("Error! Wrong length of the Cruiser! Try again:\n");
                 continue;
             }
             else if (count == 1 && sum != count && sum1 != count){
-                System.out.print("Error! Wrong length of the Destroyer! Try again:\n");
+                Battleship.errorInputText(cellsShip);
+                //System.out.print("Error! Wrong length of the Destroyer! Try again:\n");
                 continue;
             }
 
             AddShips.addShipsOnField(firstStart, intStart , endStart, intEnd,arr);
 
             if(count == 5){
-                System.out.print("Enter the coordinates of the Battleship (4 cells):\n");
+                Battleship.inputText(++cellsShip);
             }
             else if (count == 4){
-                System.out.print("Enter the coordinates of the Submarines (3 cells):\n");
+                Battleship.inputText(++cellsShip);
             }
             else if (count == 3){
-                System.out.print("Enter the coordinates of the Cruiser (3 cells):\n");
+                Battleship.inputText(++cellsShip);
             }
             else if (count == 2){
-                System.out.print("Enter the coordinates of the Destroyer (2 cells):\n");
+                Battleship.inputText(++cellsShip);
             }
             count--;
             if(count < 1){
@@ -94,7 +99,7 @@ public class Main {
 
     public static void main(String[] args) {
         Battleship.inputFieldOnConsole();
-        AddShips.inputText(cellsShip);
+        Battleship.inputText(cellsShip);
        new Main().inputCoordinates();
 
     }
