@@ -1,10 +1,10 @@
 package com.company;
 
-import com.company.inputships.InputShips;
+import com.company.list.InputShips;
 
 import java.util.Arrays;
 
-class Battleship {
+public class Battleship {
     static InputShips[] inputShips = InputShips.values();
     public static void inputText(int i) {
         System.out.print("Enter the coordinates of the " + inputShips[i].getShip() + " (" + inputShips[i].getNumberShip() + " cells):\n");
@@ -13,14 +13,14 @@ class Battleship {
         System.out.print("Error! Wrong length of the " + inputShips[i].getShip() + "! Try again:\n");
     }
 
-    public static String[][] getArray(){
+    public  static String[][] getArray(){
         String [][]arr = new String[10][10];
         for (String[] strings : arr) {
             Arrays.fill(strings, "~");
         }
         return arr;
     }
-    static void HorizontalMarkup(){
+   public static void HorizontalMarkup(){
         System.out.print("  1" + " 2" + " 3" + " 4" + " 5" + " 6" + " 7" + " 8" + " 9" + " 10\n");
     }
 
@@ -28,14 +28,14 @@ class Battleship {
      *
      * @return vertical markup
      */
-    static char[] verticalMarkup() {
+   public static char[] verticalMarkup() {
         char[]charArray = new char[10];
         for (int i = 0; i < charArray.length; i++) {
             charArray[i] = (char) (65 + i);
         }
         return charArray;
     }
-    static void inputFieldOnConsole(){
+   public static void inputFieldOnConsole(){
         String[][] arr = Battleship.getArray();
         char[] alphabet = Battleship.verticalMarkup();
         Battleship.HorizontalMarkup();
@@ -47,7 +47,7 @@ class Battleship {
      * @param startFirst String with a char
      * @return number
      */
-    static int transformationCoordinates(String startFirst){
+   public static int transformationCoordinates(String startFirst){
         int i;
         int k = 0;
         char j = startFirst.charAt(0);
@@ -59,7 +59,7 @@ class Battleship {
         }
         return k;
     }
-    static boolean[][] addArrayBoolean(){
+    public static boolean[][] addArrayBoolean(){
         boolean[][] arrBoolean = new boolean[10][10];
         for(boolean[]b : arrBoolean){
             Arrays.fill(b,true);
@@ -77,6 +77,26 @@ class Battleship {
                 System.out.print(" " + array[i][j]);
             }
             System.out.println();
+        }
+    }
+    public static void checkArray(int i0, int j1, int i2, int j3,boolean[][] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if(j1 > j3){
+                    int k = j1;
+                    j1 = j3;
+                    j3 = k;
+                }
+                if (i0 > i2){
+                    int t = i0;
+                    i0 = i2;
+                    i2 = t;
+                }
+                if(!array[i][j]){
+                    continue;
+                }
+                array[i][j] = i < i0 - 1 || i > i2 + 1 || j < j1 - 1 || j > j3 + 1;
+            }
         }
     }
 }

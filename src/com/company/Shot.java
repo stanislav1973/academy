@@ -48,8 +48,8 @@ public class Shot {
                 System.out.print("You sank the last ship. You won. Congratulations!");
                     count++;
             } else if (b && Arrays.deepEquals(checkShipSunk(a, line), arrayWithShips)) {
-
                 System.out.print("You sank a ship! Specify a new target:\n");
+
             } else if (b) {
 
                 System.out.print("You hit a ship! Try again:\n");

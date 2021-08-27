@@ -1,11 +1,11 @@
-package com.company.inputships;
+package com.company.list;
 
 public enum InputShips {
     AIRCRAFTCARRIER("Aircraft Carrier",5),
     BATTLESHIP("Battleship",4),
     SUBMARINES("Submarines",3),
     CRUISER("Cruiser",3),
-    DESTROYER("Desrtoyer",2);
+    DESTROYER("Destroyer",2);
 
     private final String ship;
     private final int numberShip;

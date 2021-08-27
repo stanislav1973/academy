@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AcademyTest {
     @Test
     void testLine(){
-        String[][]arr = Battleship.getArray();
+        String[][]arr = new Battleship().getArray();
         arr[0][0] = "O";
         arr[1][0] = "O";
         arr[2][0] = "O";
