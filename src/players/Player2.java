@@ -25,6 +25,7 @@ public class Player2 extends InputCoordinatesShip{
         AddShips.showArray(arrayPlayer2,al);
         int cellsShip = 0;
         Battleship.inputText(cellsShip);
+        String[][]s = new Player1().getArrayPlayer1();
         Scanner scanner = new Scanner(System.in);
         while (count > 0) {
         String startCoordinates = scanner.next();
@@ -98,7 +99,7 @@ public class Player2 extends InputCoordinatesShip{
                 Battleship.getEmptyArray();
                 System.out.print("---------------------\n");
                 Battleship.HorizontalMarkup();
-                AddShips.showArray(Player1.getArrayPlayer1(),al);
+               // AddShips.showArray(Player1.getArrayPlayer1(),al);
             }
             System.out.printf("%s\n", "Take a shot!");
             new Shot().getShot(arrayPlayer2,arrayWithoutShipsPlayer2);

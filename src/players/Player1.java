@@ -10,10 +10,18 @@ import java.util.Scanner;
 import static com.company.Main.cellsShip;
 
 public class Player1 extends InputCoordinatesShip {
-   private static String[][] arrayPlayer1;
+   private  String[][] arrayPlayer1;
 
-    public static String[][] getArrayPlayer1() {
+    public Player1() {
+        this.arrayPlayer1 = Battleship.getArray();
+    }
+
+    public String[][] getArrayPlayer1() {
         return arrayPlayer1;
+    }
+
+    public void setArrayPlayer1(String[][] arrayPlayer1) {
+        this.arrayPlayer1 = arrayPlayer1;
     }
 
     @Override

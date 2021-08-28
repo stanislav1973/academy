@@ -1,5 +1,7 @@
 package com.company;
 
+import players.Player1;
+
 public class AddShips {
 
     public static void addShipsOnField(int startOfFirstCoordinates, int startOfTwoCoordinates, int endOfFirstCoordinates,int endOfTwoCoordinates, String[][] array) {
@@ -27,6 +29,7 @@ public class AddShips {
             array[countVertical_1][startOfTwoCoordinates] = "O";
             countVertical_1--;
         }
+        new Player1().setArrayPlayer1(array);
         showArray(array, al);
     }
 
@@ -34,6 +37,7 @@ public class AddShips {
         for (int i = 0; i < array.length; i++) {
             System.out.print(al[i]);
             for (int j = 0; j < array[i].length; j++) {
+                new Player1().setArrayPlayer1(array);
                 System.out.print(" " + array[i][j]);
             }
             System.out.println();
