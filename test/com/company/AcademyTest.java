@@ -12,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class AcademyTest {
     @Test
     void testLine(){
-        String[][]arr = new Battleship().getArray();
+        String[][]arr =  Battleship.getArray();
         arr[0][0] = "O";
-        arr[1][0] = "O";
-        arr[2][0] = "O";
-        arr[3][0] = "O";
+        arr[0][1] = "O";
+        arr[0][2] = "O";
+//String[][]a = Arrays.copyOf(arr,arr.length);
 
-       String[][] test = TestsAcademy.checkShipSunk("A1",arr);
+       String[][] test = TestsAcademy.checkShipSunk("A2",arr);
         System.out.print(Arrays.deepToString(arr));
         assertArrayEquals(test,arr);
     }

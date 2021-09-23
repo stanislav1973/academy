@@ -75,6 +75,7 @@ public class Shot {
             if (arrayWithShips[coordinate1][twoCoordinates].equals("O")) {
                 arrayWithShips[coordinate1][twoCoordinates] = "X";
                 twoCoordinates++;
+
             } else if (arrayWithShips[coordinate1][twoCoordinates].equals("~")) {
                 twoCoordinates = coordinate2 - 1;
                 break;

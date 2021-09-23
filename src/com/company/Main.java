@@ -6,7 +6,7 @@ public class Main {
     public static int cellsShip = 0;
     public String scannerInput(){
         Scanner scanner = new Scanner(System.in);
-        return scanner.next();
+        return scanner.nextLine();
     }
     public static void main(String[] args) {
 
