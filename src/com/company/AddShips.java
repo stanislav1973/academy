@@ -1,5 +1,7 @@
 package com.company;
 
+import battleship.Player;
+
 public class AddShips {
 
     public static void addShipsOnField(int startOfFirstCoordinates, int startOfTwoCoordinates, int endOfFirstCoordinates,int endOfTwoCoordinates, String[][] array) {
@@ -31,13 +33,7 @@ public class AddShips {
     }
 
     public static void showArray(String[][] array, char[] al) {
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(al[i]);
-            for (int j = 0; j < array[i].length; j++) {
-                System.out.print(" " + array[i][j]);
-            }
-            System.out.println();
-        }
+        Player.print(al, array);
     }
 }
     

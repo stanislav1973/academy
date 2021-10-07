@@ -1,5 +1,7 @@
 package com.company;
 
+import battleship.*;
+import com.company.list.InputShips;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AcademyTest {
+    String[][]arr = new String[5][5];
     @Test
     void testLine(){
         String[][]arr =  Battleship.getArray();
@@ -22,5 +25,8 @@ class AcademyTest {
         System.out.print(Arrays.deepToString(arr));
         assertArrayEquals(test,arr);
     }
+@Test
+    void testString() {
 
+}
 }

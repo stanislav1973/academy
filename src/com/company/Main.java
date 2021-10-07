@@ -1,17 +1,18 @@
 package com.company;
-import players.Player1;
+import battleship.*;
+import com.company.list.InputShips;
 
 import java.util.Scanner;
 public class Main {
     public static int cellsShip = 0;
-    public String scannerInput(){
+
+    public String scannerInput() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
-    public static void main(String[] args) {
 
-new Player1().inputCoordinates();
+    public static void main(String[] args) throws WrongLengthShipException {
+        // new Player1().inputCoordinates();
 
     }
 }
-
