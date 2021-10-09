@@ -34,12 +34,4 @@ public class PlaceShips {
         }
         return new PlaceShips(one, two);
     }
-
-    @Override
-    public String toString() {
-        return "PlaceShips{" +
-                "firstCoordinate=" + firstCoordinate +
-                ", twoCoordinate=" + twoCoordinate +
-                '}';
-    }
 }

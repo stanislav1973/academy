@@ -33,7 +33,7 @@ public class AddShips {
     }
 
     public static void showArray(String[][] array, char[] al) {
-        Player.print(al, array);
+       // Player.print(al, array);
     }
 }
     

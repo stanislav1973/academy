@@ -1,11 +1,13 @@
 package battleship;
 
 import com.company.list.InputShips;
+import com.company.list.Move;
 import com.company.list.Movement;
 
 import java.util.Arrays;
 
 public class Player {
+    private static int countHit = 0;
     private final String[][] array = new String[10][10];
     HelperMethods helperMethods;
 
@@ -16,12 +18,16 @@ public class Player {
         }
     }
 
-    public void printField() {
+    public static int getCountHit() {
+        return countHit;
+    }
+
+    protected void printField() {
         char[] chars = HelperMethods.verticalMarkup();
         print(chars, array);
     }
 
-    public static void print(char[] chars, String[][] array) {
+    private static void print(char[] chars, String[][] array) {
         for (int i = 0; i < array.length; i++) {
             System.out.print(chars[i]);
             for (int j = 0; j < array[i].length; j++) {
@@ -32,12 +38,12 @@ public class Player {
     }
 
     public void addShipsToTheField(PlaceShips placeShips) {
-        if(placeShips.getFirstCoordinate().getY() > placeShips.getTwoCoordinate().getY()){
-            int i  = placeShips.getTwoCoordinate().getY();
+        if (placeShips.getFirstCoordinate().getY() > placeShips.getTwoCoordinate().getY()) {
+            int i = placeShips.getTwoCoordinate().getY();
             placeShips.getTwoCoordinate().setY(placeShips.getFirstCoordinate().getY());
             placeShips.getFirstCoordinate().setY(i);
         }
-        else if(placeShips.getFirstCoordinate().getX() > placeShips.getTwoCoordinate().getX()){
+        else if (placeShips.getFirstCoordinate().getX() > placeShips.getTwoCoordinate().getX()) {
             int i = placeShips.getTwoCoordinate().getX();
             placeShips.getTwoCoordinate().setX(placeShips.getFirstCoordinate().getX());
             placeShips.getFirstCoordinate().setX(i);
@@ -46,15 +52,14 @@ public class Player {
             for (int i = placeShips.getFirstCoordinate().getY(); i <= placeShips.getTwoCoordinate().getY(); i++) {
                 array[placeShips.getFirstCoordinate().getX()][i] = "O";
             }
-        }
-        else if(placeShips.getFirstCoordinate().getY() == placeShips.getTwoCoordinate().getY()){
+        } else if (placeShips.getFirstCoordinate().getY() == placeShips.getTwoCoordinate().getY()) {
             for (int i = placeShips.getFirstCoordinate().getX(); i <= placeShips.getTwoCoordinate().getX(); i++) {
                 array[i][placeShips.getTwoCoordinate().getY()] = "O";
             }
         }
     }
 
-    protected boolean checkAdjacentCell(int x, int y) {
+    public boolean checkAdjacentCell(int x, int y) {
         for (Movement movement : Movement.values()) {
             try {
                 if (array[x + movement.getX()][y + movement.getY()].equals("O")) {
@@ -66,7 +71,7 @@ public class Player {
         return false;
     }
 
-    protected boolean isSizeShip(PlaceShips placeShips,int size) {
+    protected boolean isSizeShip(PlaceShips placeShips, int size) {
         int x = placeShips.getFirstCoordinate().getX();
         int y = placeShips.getFirstCoordinate().getY();
         int x_1 = placeShips.getTwoCoordinate().getX();
@@ -76,55 +81,64 @@ public class Player {
 
     protected void checkForInputErrors(int size) throws WrongLengthShipException, WrongCloseShipException, WrongLocationException {
         PlaceShips placeShips = PlaceShips.inputTwoCoordinate();
-
-        if(checkAdjacentCell(placeShips.getFirstCoordinate().getX(),placeShips.getFirstCoordinate().getY())){
+        if (checkAdjacentCell(placeShips.getFirstCoordinate().getX(), placeShips.getFirstCoordinate().getY())) {
             throw new WrongCloseShipException();
         }
-        if(placeShips.getFirstCoordinate().getX() != placeShips.getTwoCoordinate().getX()
-                && placeShips.getFirstCoordinate().getY() != placeShips.getTwoCoordinate().getY()){
+        if (placeShips.getFirstCoordinate().getX() != placeShips.getTwoCoordinate().getX()
+                && placeShips.getFirstCoordinate().getY() != placeShips.getTwoCoordinate().getY()) {
             throw new WrongLocationException();
         }
-        if (!isSizeShip(placeShips,size)) {
+        if (!isSizeShip(placeShips, size)) {
             throw new WrongLengthShipException();
         }
         addShipsToTheField(placeShips);
     }
 
-    protected void startTheGame(){
+    protected void startTheGame() {
         printField();
         for (InputShips ships : InputShips.values()) {
-            System.out.printf("Enter the coordinates of the %s (%d cells)\n",ships.getShip(),ships.getNumberShip());
+            System.out.printf("Enter the coordinates of the %s (%d cells)\n", ships.getShip(), ships.getNumberShip());
             while (true) {
                 try {
                     checkForInputErrors(ships.getNumberShip());
                     printField();
                     break;
-                }  catch (WrongCloseShipException e) {
+                } catch (WrongCloseShipException e) {
                     System.out.print("Error! You placed it too close to another one. Try again:\n");
                 } catch (WrongLocationException e) {
                     System.out.print("Error! Wrong ship location! Try again:\n");
                 } catch (WrongLengthShipException e) {
-                    System.out.printf("Error! Wrong length of the %s! Try again:\n",ships.getShip());
+                    System.out.printf("Error! Wrong length of the %s! Try again:\n", ships.getShip());
                 }
             }
         }
     }
-    protected void getCheckShot() throws WrongLengthShipException{
+
+    protected void getCheckShot() throws WrongLengthShipException {
         Coordinate coordinate = Coordinate.inputOneCoordinate();
-        if(array[coordinate.getX()][coordinate.getY()].equals("O")){
-            array[coordinate.getX()][coordinate.getY()] = "X";
-            helperMethods.setArr(array);
-            helperMethods.twoArray();
-            System.out.print("You hit a ship!\n");
-        }
-        else { array[coordinate.getX()][coordinate.getY()] = "M";
-            helperMethods.setArr(array);
-            helperMethods.twoArray();
-        System.out.print("You missed!\n");
-        }
-        printField();
+        Search search = new Search(coordinate.getX(), coordinate.getY());
+
+             if(array[coordinate.getX()][coordinate.getY()].equals("O")) {
+                 array[coordinate.getX()][coordinate.getY()] = "X";
+                 countHit++;
+                 boolean b = search.isSearchHorizontal(search,array);
+                 boolean b1 = search.isSearchVertical(search,array);
+                 helperMethods.twoArray(array);
+                 if(!b && !b1 && countHit == 17){
+                     System.out.print("You sank the last ship. You won. Congratulations!");
+                 }
+                 else if (!b && !b1) {
+                     System.out.print("You sank a ship! Specify a new target:\n");
+                 } else {
+                     System.out.print("You hit a ship! Try again:\n");
+                 }
+             } else {
+                 array[coordinate.getX()][coordinate.getY()] = "M";
+                    helperMethods.twoArray(array);
+                    System.out.print("You missed. Try again:\n");
+             }
     }
-    void getShot(){
+    void getShot() {
         while (true) {
             try {
                 getCheckShot();

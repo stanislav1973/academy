@@ -3,21 +3,6 @@ package battleship;
 import java.util.Arrays;
 
 public class HelperMethods {
-    private String[][] arr = new String[10][10];
-
-    public HelperMethods() {
-        for (String[] s : arr) {
-            Arrays.fill(s, "~");
-        }
-    }
-
-    public String[][] getArr() {
-        return arr;
-    }
-
-    public void setArr(String[][] arr) {
-        this.arr = arr;
-    }
 
     public static void HorizontalMarkup() {
         System.out.print("  1" + " 2" + " 3" + " 4" + " 5" + " 6" + " 7" + " 8" + " 9" + " 10\n");
@@ -32,15 +17,16 @@ public class HelperMethods {
         return charArray;
     }
 
-    protected void twoArray() {
+    protected void twoArray(String[][]arr) {
         char[] chars = HelperMethods.verticalMarkup();
         for (int i = 0; i < arr.length; i++) {
             System.out.print(chars[i]);
             for (int j = 0; j < arr[i].length; j++) {
-                if (arr[i][j].equals("O")) {
-                    arr[i][j] = "~";
+                String cell = arr[i][j];
+                if (cell.equals("O")) {
+                   System.out.print(" ~");
                 }
-                System.out.print(" " + arr[i][j]);
+               else { System.out.print(" " + cell);}
             }
             System.out.println();
         }
