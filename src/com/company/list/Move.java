@@ -21,7 +21,7 @@ public enum Move {
                 return RIGHT;
             case RIGHT:
                 return LIFT;
-            default: return UP;
+            default: return RIGHT;
         }
     }
     public int getX() {

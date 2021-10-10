@@ -1,62 +1,113 @@
 package com.company;
 
 import battleship.*;
-import com.company.list.InputShips;
-import com.company.list.Move;
-import org.junit.Ignore;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
-import java.io.File;
+import java.lang.annotation.Target;
 import java.util.Arrays;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+public class AcademyTest {
+       static String[][] array = new String[10][10];
 
-class AcademyTest {
-    String[][]arr = new String[5][5];
+    @BeforeAll
+    public static void array() {
+        array = new String[10][10];
+        for (String[] s : array) {
+            Arrays.fill(s, "~");
+        }
+    }
+
     @Test
-    void testLine(){
-        String[][]arr =  Battleship.getArray();
-        arr[0][0] = "O";
-        arr[0][1] = "O";
-        arr[0][2] = "O";
-//String[][]a = Arrays.copyOf(arr,arr.length);
-
-       String[][] test = TestsAcademy.checkShipSunk("A1",arr);
-        System.out.print(Arrays.deepToString(arr));
-        assertArrayEquals(test,arr);
-    }
-@Test
-    void testString() {
-    String[][] array = new String[10][10];
-    for (String[] s : array) {
-        Arrays.fill(s, "~");
+   public void testHorizontal() {
+        array[0][0] = "X";
+        array[0][1] = "X";
+        array[0][2] = "X";
+        Search search = new Search(0, 0);
+        boolean b = search.isSearchHorizontal(search, array);
+        boolean b1 = search.isSearchVertical(search, array);
+        System.out.println(b + " " + b1);
     }
 
-    array[0][0] = "X"; array[9][0] = "X";
-    array[0][1] = "X"; array[9][1] = "X";
-    array[0][2] = "X"; array[9][2] = "X";
-    array[0][3] = "X"; array[9][3] = "0";
-    array[0][4] = "O"; array[9][4] = "X";
-//    array[9][0] = "X"; array[0][0] = "X";
-//    array[8][0] = "X"; array[1][0] = "X";
-//    array[7][0] = "X"; array[2][0] = "X";
-//    array[6][0] = "O"; array[3][0] = "O";
-//    array[5][0] = "X"; array[4][0] = "X";
-
-
-    Search search = new Search(9, 0);
-
-     boolean b = search.isSearchHorizontal(search,array);
-    System.out.print(b);
-    boolean b1 = search.isSearchVertical(search,array);
-    System.out.print(b1);
-
-
+    @Test
+    void testHorizontal1() {
+        array[0][9] = "X";
+        array[0][8] = "X";
+        array[0][7] = "X";
+        Search search = new Search(0, 9);
+        boolean b = search.isSearchHorizontal(search, array);
+        boolean b1 = search.isSearchVertical(search, array);
+        System.out.println(b + " " + b1);
     }
     @Test
-    void testEnum(){
-        Search search = new Search(0,1);
-        System.out.print(search.getMove());
+    void testHorizontal2() {
+        array[9][9] = "X";
+        array[9][8] = "X";
+        array[9][7] = "X";
+        Search search = new Search(9, 9);
+        boolean b = search.isSearchHorizontal(search, array);
+        boolean b1 = search.isSearchVertical(search, array);
+        System.out.println(b + " " + b1);
+    }
+    @Test
+    void testHorizontal3() {
+        array[9][0] = "X";
+        array[9][1] = "O";
+        array[9][2] = "X";
+        Search search = new Search(9, 0);
+        boolean b = search.isSearchHorizontal(search, array);
+        boolean b1 = search.isSearchVertical(search, array);
+        System.out.println(b + " " + b1);
+    }
+    @Test
+    void testVertical() {
+        array[1][0] = "X";
+        array[0][0] = "X";
+        array[2][0] = "O";
+        Search search = new Search(1, 0);
+        boolean b = search.isSearchHorizontal(search, array);
+        boolean b1 = search.isSearchVertical(search, array);
+        System.out.println(b + " " + b1);
+    }
+    @Test
+    void testVertical1() {
+        array[7][0] = "X";
+        array[8][0] = "X";
+        array[9][0] = "X";
+        Search search = new Search(9, 0);
+        boolean b = search.isSearchHorizontal(search, array);
+        boolean b1 = search.isSearchVertical(search, array);
+        System.out.println(b + " " + b1);
+    }
+    @Test
+    void testVertical2() {
+        array[0][9] = "X";
+        array[1][9] = "X";
+        array[2][9] = "X";
+        array[3][9] = "X";
+        array[4][9] = "O";
+        Search search = new Search(0, 9);
+        boolean b = search.isSearchHorizontal(search, array);
+        boolean b1 = search.isSearchVertical(search, array);
+        System.out.println(b + " " + b1);
+    }
+    @Test
+    void testVertical3() {
+        array[9][9] = "X";
+        array[8][9] = "X";
+        array[7][9] = "X";
+        array[6][9] = "X";
+
+        Search search = new Search(9, 9);
+        boolean b = search.isSearchHorizontal(search, array);
+        boolean b1 = search.isSearchVertical(search, array);
+        System.out.println(b + " " + b1);
     }
 }

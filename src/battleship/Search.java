@@ -49,56 +49,44 @@ public class Search {
     public boolean isSearchHorizontal(Search coordinate, String[][] arr) {
         int x = coordinate.stepX;
         int y = coordinate.stepY;
-            try {
-            while (!arr[coordinate.stepX][coordinate.stepY].equals("~")) {
-                search();
-                if (arr[coordinate.stepX][coordinate.stepY].equals("O")) {
-                    return true;
-                }
-                if (arr[coordinate.stepX][coordinate.stepY].equals("~")) {
-                    turnSearch();
-                    search();
-                    try {
-                    while (!arr[coordinate.stepX][coordinate.stepY].equals("~")) {
-                        search();
-                        if (arr[coordinate.stepX][coordinate.stepY].equals("O")) {
-                            return true;
-                        }
-                    }
-                    } catch (ArrayIndexOutOfBoundsException ignore){}
-                }
-            }
-        } catch (ArrayIndexOutOfBoundsException ignore) {
-
-        }
+        if (look(coordinate, arr)) return true;
         coordinate.stepX = x;
         coordinate.stepY = y;
         return false;
     }
 
+    public boolean look(Search coordinate, String[][] arr) {
+        for (int j = 0; j < 2; j++) {
+            try {
+                while (!arr[coordinate.stepX][coordinate.stepY].equals("~")) {
+                    search();
+                    if (arr[coordinate.stepX][coordinate.stepY].equals("O")) {
+                        return true;
+                    }
+                    if (arr[coordinate.stepX][coordinate.stepY].equals("~")) {
+                        turnSearch();
+                        search();
+                        try {
+                            while (!arr[coordinate.stepX][coordinate.stepY].equals("~")) {
+                                search();
+                                if (arr[coordinate.stepX][coordinate.stepY].equals("O")) {
+                                    return true;
+                                }
+                            }
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                    }
+                }
+            } catch (ArrayIndexOutOfBoundsException ignore) {
+                turnSearch();
+                search();
+            }
+        }
+        return false;
+    }
+
     public boolean isSearchVertical(Search coordinate, String[][] arr) {
         turnSearch();
-        try {
-            while (!arr[coordinate.stepX][coordinate.stepY].equals("~")) {
-                search();
-                if (arr[coordinate.stepX][coordinate.stepY].equals("O")) {
-                    return true;
-                }
-                if (arr[coordinate.stepX][coordinate.stepY].equals("~")) {
-                    turnSearch();
-                    search();
-                    try {
-                        while (!arr[coordinate.stepX][coordinate.stepY].equals("~")) {
-                            search();
-
-                            if (arr[coordinate.stepX][coordinate.stepY].equals("O")) {
-                                return true;
-                            }
-                        }
-                    } catch (ArrayIndexOutOfBoundsException ignore) {}
-                }
-            }
-        } catch (ArrayIndexOutOfBoundsException ignore) {}
-        return false;
+        return look(coordinate, arr);
     }
 }
