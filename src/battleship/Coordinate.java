@@ -1,7 +1,4 @@
 package battleship;
-
-import com.company.list.Move;
-
 import java.util.Scanner;
 
 public class Coordinate {

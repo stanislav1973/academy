@@ -22,29 +22,6 @@ public class Search {
         stepY = stepY + move.getY();
     }
 
-    public int getStepX() {
-        return stepX;
-    }
-
-    public void setStepX(int stepX) {
-        this.stepX = stepX;
-    }
-
-    public int getStepY() {
-        return stepY;
-    }
-
-    public void setStepY(int stepY) {
-        this.stepY = stepY;
-    }
-
-    public Move getMove() {
-        return move;
-    }
-
-    public void setMove(Move move) {
-        this.move = move;
-    }
 
     public boolean isSearchHorizontal(Search coordinate, String[][] arr) {
         int x = coordinate.stepX;

@@ -1,7 +1,4 @@
 package battleship;
-
-import java.util.Arrays;
-
 public class Game {
     public Player player;
 
@@ -12,12 +9,13 @@ public class Game {
     }
 
     public void getStart()  {
-        player.startTheGame();
-        System.out.print("The game starts!\n");
-        player.printField();
-        System.out.print("Take a shot!\n");
         int COUNT_SHIPS = 17;
-        while (Player.getCountHit() < COUNT_SHIPS) {
+            System.out.print("Player 1, place your ships on the game field\n");
+            player.startTheGame(true);
+            HelperMethods.scanner();
+        System.out.print("Player 2, place your ships on the game field\n");
+        player.startTheGame(false);
+        while (Player.countHitPlayer < COUNT_SHIPS || Player.countHitNewPlayer < COUNT_SHIPS) {
             player.getShot();
         }
     }

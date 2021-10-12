@@ -1,9 +1,8 @@
 package battleship;
-
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class HelperMethods {
-
+    final static int SIZE = 11;
     public static void HorizontalMarkup() {
         System.out.print("  1" + " 2" + " 3" + " 4" + " 5" + " 6" + " 7" + " 8" + " 9" + " 10\n");
     }
@@ -17,7 +16,7 @@ public class HelperMethods {
         return charArray;
     }
 
-    protected void twoArray(String[][]arr) {
+    public void twoArray(String[][]arr) {
         char[] chars = HelperMethods.verticalMarkup();
         for (int i = 0; i < arr.length; i++) {
             System.out.print(chars[i]);
@@ -29,6 +28,19 @@ public class HelperMethods {
                else { System.out.print(" " + cell);}
             }
             System.out.println();
+        }
+    }
+    public static void stringDelimiter(){
+        for (int i = 0; i < SIZE; i++) {
+            System.out.print(" -");
+        }
+        System.out.println();
+    }
+    public static void scanner(){
+        System.out.print("Press Enter and pass the move to another player\n");
+        Scanner scanner = new Scanner(System.in);
+        if(scanner.nextLine().equals("")){
+            System.out.print("");
         }
     }
 }
