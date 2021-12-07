@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+    <link rel="stylesheet" th:href="@{/stylus.css}">
+</head>
+<body>
+<div>
+    <h3 class="head">Таблица заказов</h3>
+    <table th:border="${1}" th:align="right">
+        <thead>
+        <tr>
+            <th>№</th>
+            <th>Город</th>
+            <th>Улица</th>
+            <th>Номер дома</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="db : ${model}">
+            <td th:text="${db.id}"></td>
+            <td th:text="${db.city}"></td>
+            <td th:text="${db.street}"></td>
+            <td th:text="${db.numberHome}"></td>
+            <td><a th:href="@{/deleteOrder/{id}(id=${db.id})}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<form method="post"  th:object="${orders}">
+    <div>
+        <h3 class="div">Заказ такси</h3>
+        <label>
+            <input type="text" th:placeholder="#{city}" th:field="${mod.city}"/>
+        </label>
+        <label>
+            <input type="text" th:placeholder="#{street}" th:field="${mod.street}"/>
+        </label>
+        <label>
+            <input type="text" th:placeholder="#{numberHome}" th:field="${mod.numberHome}"/>
+        </label>
+    </div>
+
+    <div class="field">
+        <button>Отправить заказ</button>
+    </div>
+
+    <div class="field1">
+        <h3 class="field">Отмена заказа</h3>
+        <label>
+            <input type="text" th:placeholder="#{deleteOrder}" th:field="*{numberOrder}"/>
+        </label>
+    </div>
+    <button class="field">Отменить заказ</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>PrintOrder</title>
+</head>
+<body>
+<form th:method="get" th:object="${print}">
+    <div>
+        <h3 th:text="#{order}"></h3>
+<h3 class="cl" th:text="${print.id - 1}"></h3>
+    </div>
+    <a th:href="@{/}">Домашняя страница</a><br/><br/>
+</form>
+</body>
+</html>
