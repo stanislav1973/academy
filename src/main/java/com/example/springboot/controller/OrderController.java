@@ -38,7 +38,7 @@ public class OrderController {
 
     @PostMapping
     public String processingOrder(Order takeOrder,TakeOrder take) {
-        String result = "redirect:/error";;
+        String result = "redirect:/error";
         if (take.getNumberOrder().equals("")) {
             tk.getList().add(takeOrder);
             takeOrder.setId(id);
