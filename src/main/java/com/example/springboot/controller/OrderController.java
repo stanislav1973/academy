@@ -3,20 +3,20 @@ package com.example.springboot.controller;
 import com.example.springboot.model.Order;
 import com.example.springboot.model.TakeOrder;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
-@Slf4j
 @Controller
 @RequestMapping("/")
 public class OrderController {
-    Order order = new Order();
-    TakeOrder tk = new TakeOrder();
+   private final Order order = new Order();
+    Session session = new Session();
     public static int id;
 
     @GetMapping()
@@ -28,37 +28,17 @@ public class OrderController {
     }
     @GetMapping("/deleteOrder/{id}")
     public String deleteOrder(@PathVariable("id") int id) {
-        for (int i = tk.getList().size() - 1; i >=0 ; i--) {
-            if (id == tk.getList().get(i).getId()){
-                tk.getList().remove(tk.getList().get(i));
-            }
-        }
+        session.asyncDeleteOrder(id);
         return "redirect:/";
     }
 
     @PostMapping
-    public String processingOrder(Order takeOrder,TakeOrder take) {
-        String result = "redirect:/error";
-        if (take.getNumberOrder().equals("")) {
-            tk.getList().add(takeOrder);
-            takeOrder.setId(id);
-            id++;
-            result =  "redirect:/printOrder";
-        } else {
-                int k = Integer.parseInt(take.getNumberOrder());
-                for (int i = tk.getList().size() - 1; i >= 0; i--) {
-                    if (tk.getList().get(i).getId() == k) {
-                        tk.getList().remove(tk.getList().get(i));
-                        result =  "redirect:/printDeleteOrder";
-                        break;
-                    }
-                }
-        }
-        return result;
+    public CompletableFuture<String> processingOrder(Order takeOrder,TakeOrder take) {
+        return session.asyncProcessOrder(takeOrder,take);
     }
 
     @ModelAttribute("models")
     public List<Order> getOrder() {
-        return tk.getList();
+        return session.getList();
     }
 }
