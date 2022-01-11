@@ -143,6 +143,8 @@ public class ImplementsRequest implements MethodRequest {
         }
     }
     private void writeBytesClient(DataInputStream in) {
+       // ExecutorService service = Executors.newFixedThreadPool(4);
+        //service.submit(() -> {
             try {
                 int length = in.readInt();
                 byte[] message = new byte[length];
@@ -156,5 +158,7 @@ public class ImplementsRequest implements MethodRequest {
             } catch (Exception e) {
                 System.out.print(e.getMessage());
             }
+       // });
+       // service.shutdown();
     }
 }

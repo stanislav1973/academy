@@ -50,6 +50,7 @@ public class ImplementsRequest implements MethodRequest, Serializable {
                     for (String name : getOutFile().values()) {
                         if (nameFile.equals(name)) {
                             getArrayByteServer(outputStream, pathFileServer() + nameFile);
+                            break;
                         }
                     }
                 } else if (byName.equals("BY_ID")) {
@@ -57,6 +58,7 @@ public class ImplementsRequest implements MethodRequest, Serializable {
                         if (nameFile.equals(key.getKey())) {
                             nameFile = getOutFile().get(key.getKey());
                             getArrayByteServer(outputStream, pathFileServer() + nameFile);
+                            break;
                         }
                     }
                 }
