@@ -1,0 +1,6 @@
+.idea
+newserver1.iml
+out/
+test/
+src/client/data/
+src/server/data/
