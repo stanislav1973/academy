@@ -1,2 +1,4 @@
 hyperskill.iml
 /.idea
+/src/socket/client/data/
+/src/socket/server/data/
